@@ -1,13 +1,22 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:id="@+id/fragment_top_stories"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.mynews.Controllers.Fragments.TopStoriesFragment">
+    tools:context=".Fragments.TopStoriesFragment"
+    android:gravity="center"
+    android:background="#fff">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Top Stories" />
+        android:id="@+id/fragment_top_stories_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dip"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:textAlignment="center"
+        android:text="Top Stories will be there"/>
 
-</FrameLayout>
+</LinearLayout>

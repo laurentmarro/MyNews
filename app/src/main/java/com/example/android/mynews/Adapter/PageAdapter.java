@@ -1,23 +1,23 @@
-package com.example.android.mynews.Adapters;
+package com.example.android.mynews.Adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import com.example.android.mynews.Controllers.Fragments.BusinessFragment;
-import com.example.android.mynews.Controllers.Fragments.MostPopularFragment;
-import com.example.android.mynews.Controllers.Fragments.TopStoriesFragment;
+
+import com.example.android.mynews.Fragments.BusinessFragment;
+import com.example.android.mynews.Fragments.MostPopularFragment;
+import com.example.android.mynews.Fragments.TopStoriesFragment;
 
 public class PageAdapter extends FragmentPagerAdapter {
 
-
-    //Default Constructor
+    // Default Constructor
     public PageAdapter(FragmentManager manager) {
         super(manager);
     }
 
     @Override
     public int getCount() {
-        return(3);
+        return(3); // Number of page to show
     }
 
     @Override
@@ -38,11 +38,11 @@ public class PageAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position){
             case 0: //Page number 1
-                return "Top Stories";
+                return "TOP STORIES";
             case 1: //Page number 2
-                return "Most Popular";
+                return "MOST POPULAR";
             case 2: //Page number 3
-                return "Business";
+                return "BUSINESS";
             default:
                 return null;
         }

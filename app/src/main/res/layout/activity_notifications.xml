@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.MostPopularFragment"
+    tools:context=".Views.Notifications"
     android:gravity="center"
     android:background="#fff">
 
@@ -17,6 +17,6 @@
         android:textStyle="bold"
         android:textColor="#000"
         android:textAlignment="center"
-        android:text="Most Popular will be there"/>
+        android:text="Notifications"/>
 
 </LinearLayout>
