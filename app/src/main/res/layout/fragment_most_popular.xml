@@ -1,5 +1,5 @@
 <LinearLayout
-    android:id="@+id/fragment_most_popular"
+    android:id="@+id/fragment_business"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,15 +8,8 @@
     android:gravity="center"
     android:background="#fff">
 
-    <TextView
-        android:id="@+id/fragment_most_popular_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dip"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="#000"
-        android:textAlignment="center"
-        android:text="Most Popular will be there"/>
-
+<android.support.v7.widget.RecyclerView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/list" />
 </LinearLayout>

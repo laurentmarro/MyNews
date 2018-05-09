@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main_params"
+    android:id="@+id/activity_main_search"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Views.Notifications">
+    tools:context=".Views.Search">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -18,9 +16,7 @@
         <include
             layout="@layout/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            />
+            android:layout_height="wrap_content" />
 
         <!-- Part1 -->
         <include
@@ -28,36 +24,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <!-- Part2 -->
+
+
+        <!-- Part3 -->
         <include
             layout="@layout/notifications_and_search_part2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/search"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/colorAccent" />
+
     </LinearLayout>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:ignore="MissingConstraints" />
-
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="@string/enable_notifications_once_per_day"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
-        android:checked="false"
-        android:theme="@style/SCBSwitch" />
 
 </android.support.constraint.ConstraintLayout>

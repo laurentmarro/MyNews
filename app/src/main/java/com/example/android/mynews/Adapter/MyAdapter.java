@@ -1,5 +1,7 @@
 package com.example.android.mynews.Adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -7,7 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.android.mynews.Controllers.MainActivity;
 import com.example.android.mynews.R;
+import com.example.android.mynews.Views.Article;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -63,11 +69,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
                 @Override
                 public void onClick(View view) {
-                    // il faudra mettre une texte view avec l'article entier.
-                    new AlertDialog.Builder(itemView.getContext())
-                            .setTitle(currentPair.first)
-                            .setMessage(currentPair.second)
-                            .show();
+                    // To Datas
                 }
             });
         }

@@ -2,11 +2,8 @@ package com.example.android.mynews.Controllers;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,20 +12,19 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
-import android.widget.Toast;
 import com.example.android.mynews.Adapter.PageAdapter;
 import com.example.android.mynews.R;
+import com.example.android.mynews.Views.About;
+import com.example.android.mynews.Views.Help;
 import com.example.android.mynews.Views.Notifications;
+import com.example.android.mynews.Views.Search;
 
 public class MainActivity extends AppCompatActivity {
 
     // For Design
     private Toolbar toolbar;
-    private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
 
     // For AlertDialog
-
     String [] PARAMETERS = {"Notifications", "Help", "About"};
 
     @Override
@@ -47,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         // Set Adapter PageAdapter and glue it together
         pager.setAdapter(new PageAdapter(getSupportFragmentManager()) {
         });
-
         // Get TabLayout from layout
         TabLayout tabs= (TabLayout)findViewById(R.id.activity_main_tabs);
         // Glue TabLayout and ViewPager together
@@ -61,16 +56,6 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu and add it to the Toolbar
         getMenuInflater().inflate(R.menu.menu_activity_main, menu);
         return true;
-    }
-
-    @Override
-    public void onBackPressed() {
-        // Handle back click to close menu
-        if (this.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            this.drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
     }
 
     // ---------------------
@@ -91,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
                 alertDialogActivity();
                 return true;
             case R.id.activity_main_search:
-                Toast.makeText(this, "Search unavailable...", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), Search.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -111,13 +97,16 @@ public class MainActivity extends AppCompatActivity {
                 // Switch
                 switch (which){
                     case 0 :
-                        notificationsStart();
+                        Intent intent1 = new Intent(getApplicationContext(), Notifications.class);
+                        startActivity(intent1);
                         break;
                     case 1:
-                        Toast.makeText(getApplicationContext(),PARAMETERS[which],Toast.LENGTH_SHORT).show();
+                        Intent intent2 = new Intent(getApplicationContext(), Help.class);
+                        startActivity(intent2);
                         break;
                     case 2:
-                        Toast.makeText(getApplicationContext(),PARAMETERS[which],Toast.LENGTH_SHORT).show();
+                        Intent intent3 = new Intent(getApplicationContext(), About.class);
+                        startActivity(intent3);
                         break;
                     default:
                         break;
@@ -129,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
         dialog.getWindow();
 
-        // Setting dialogview
+        // Setting Dialog View
         Window window = dialog.getWindow();
         window.setGravity(Gravity.RIGHT | Gravity.TOP);
         dialog.show();
@@ -137,13 +126,8 @@ public class MainActivity extends AppCompatActivity {
         // Convert the dps to pixels, based on density scale
         final float scale = getResources().getDisplayMetrics().density;
         int width = (int) (200 * scale + 0.5f);
-        int height = width;
+        int height = width; // because it's a square
 
         window.setLayout(width,height);
-    }
-
-    private void notificationsStart() {
-        Intent intent = new Intent(this, Notifications.class);
-        startActivity(intent);
     }
 }
