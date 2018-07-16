@@ -12,7 +12,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
-import com.example.android.mynews.Adapter.PageAdapter;
+import com.example.android.mynews.Adapter.FragmentAdapter;
 import com.example.android.mynews.R;
 import com.example.android.mynews.Views.About;
 import com.example.android.mynews.Views.Help;
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         // Get ViewPager from layout
         ViewPager pager = (ViewPager)findViewById(R.id.activity_main_viewpager);
         // Set Adapter PageAdapter and glue it together
-        pager.setAdapter(new PageAdapter(getSupportFragmentManager()) {
+        pager.setAdapter(new FragmentAdapter(getSupportFragmentManager()) {
         });
         // Get TabLayout from layout
         TabLayout tabs= (TabLayout)findViewById(R.id.activity_main_tabs);

@@ -17,8 +17,6 @@ public class NewsCalls {
         void onFailure();
     }
 
-    String reponse;
-
     // 2 - Public method to start fetching articles
     public static void fetchUserArticle(Callbacks callbacks){
 
@@ -42,11 +40,6 @@ public class NewsCalls {
                     callbacksWeakReference.get().onResponse(response.body());
 
                 List<Result> resultList = response.body().getResults();
-                for (int i = 0; i < resultList.size(); i++) {
-                    String resultats = resultList.get(i).getMultimedia().get(0).getUrl() + " "
-                            + resultList.get(i).getShortUrl()+ " "
-                            + resultList.get(i).getTitle();
-                }
             }
 
             @Override
