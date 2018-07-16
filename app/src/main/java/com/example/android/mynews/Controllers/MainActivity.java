@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Setting Dialog View
         Window window = dialog.getWindow();
-        window.setGravity(Gravity.RIGHT | Gravity.TOP);
+        window.setGravity(Gravity.END | Gravity.TOP);
         dialog.show();
 
         // Convert the dps to pixels, based on density scale

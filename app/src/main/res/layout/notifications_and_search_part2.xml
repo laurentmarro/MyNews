@@ -52,8 +52,7 @@
         android:layout_marginStart="20dp"
         android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/linearLayout1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="0dp">
+        tools:ignore="MissingConstraints">
 
         <CheckBox
             android:id="@+id/arts_checkBox4"

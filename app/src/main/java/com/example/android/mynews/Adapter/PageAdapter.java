@@ -3,7 +3,6 @@ package com.example.android.mynews.Adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
 import com.example.android.mynews.Fragments.BusinessFragment;
 import com.example.android.mynews.Fragments.MostPopularFragment;
 import com.example.android.mynews.Fragments.TopStoriesFragment;

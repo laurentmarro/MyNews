@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import com.example.android.mynews.Adapter.MyAdapter;
 import com.example.android.mynews.R;
 
+import butterknife.ButterKnife;
+
 public class TopStoriesFragment extends Fragment {
 
     public static TopStoriesFragment newInstance() {
@@ -24,6 +26,8 @@ public class TopStoriesFragment extends Fragment {
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(fragmentActivity));
         recyclerView.setAdapter(new MyAdapter());
+        ButterKnife.bind(this, view);
         return view;
     }
+
 }

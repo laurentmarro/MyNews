@@ -1,28 +1,18 @@
 package com.example.android.mynews.Adapter;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.v4.util.Pair;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.example.android.mynews.Controllers.MainActivity;
 import com.example.android.mynews.R;
-import com.example.android.mynews.Views.Article;
-
 import java.util.Arrays;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private final List<Pair<String, String>> characters = Arrays.asList(
-
-            // On va récupérer les données de l'API du NYT pour le fragment
-            // Attention au DRY - Un seul adapter pour les 3 possibilités
 
             Pair.create("Lyra Belacqua", "Brave, curious, and crafty, she has been prophesied by the witches to help the balance of life"),
             Pair.create("Pantalaimon", "Lyra's daemon, nicknamed Pan."),
@@ -55,28 +45,28 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private final TextView name;
+        private final TextView title;
         private final TextView description;
         private Pair<String, String> currentPair;
 
         public MyViewHolder(final View itemView) {
 
             super(itemView);
-            name = ((TextView) itemView.findViewById(R.id.name));
+            title = ((TextView) itemView.findViewById(R.id.title));
             description = ((TextView) itemView.findViewById(R.id.description));
 
             itemView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
-                    // To Datas
+                    // To read the art
                 }
             });
         }
 
         public void display(Pair<String, String> pair) {
             currentPair = pair;
-            name.setText(pair.first);
+            title.setText(pair.first);
             description.setText(pair.second);
         }
     }
