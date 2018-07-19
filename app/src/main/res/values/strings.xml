@@ -4,7 +4,7 @@
     <string name="most_popular">Most Popular</string>
     <string name="business">Business</string>
     <string name="configuration">Configuration</string>
-    <string name="search">Search Articles</string>
+    <string name="search">Search</string>
     <string name="parameters">Parameters</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title">Title</string>
@@ -26,7 +26,6 @@
     <string name="Datepicker">01/07/2018</string>
     <string name="articles_image">articles\'image</string>
     <string name="Arts">Arts</string>
-
     <string name="notification_title">"A new article is on line"</string>
 
 </resources>

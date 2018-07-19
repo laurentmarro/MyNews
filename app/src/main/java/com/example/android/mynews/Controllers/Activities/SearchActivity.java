@@ -39,7 +39,6 @@ public class SearchActivity extends AppCompatActivity {
 
                 DatePickerDialog dialog = new DatePickerDialog(
                         SearchActivity.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         dateSetListener,
                         year,month,day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -57,7 +56,6 @@ public class SearchActivity extends AppCompatActivity {
 
                 DatePickerDialog dialog = new DatePickerDialog(
                         SearchActivity.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         dateSetListener2,
                         year,month,day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

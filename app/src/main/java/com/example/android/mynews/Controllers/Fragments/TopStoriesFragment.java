@@ -35,7 +35,6 @@ public class TopStoriesFragment extends Fragment {
     public static TopStoriesFragment newInstance() {
         return (new TopStoriesFragment());
     }
-
     public TopStoriesFragment() { }
 
     @Override
@@ -85,16 +84,17 @@ public class TopStoriesFragment extends Fragment {
             @Override
             public void onResponse(ArticleComposition articleComposition) {
                 articleComposition.getResults().get(0).getTitle();
+                articleComposition.getResults().get(0).getShortUrl();
+                articleComposition.getResults().get(0).getMultimedia().get(0).getUrl();
             }
 
             @Override
             public void onFailure() {
-                Log.e("Erreur","Erreur");
+                Log.e("Error","No new article");
             }
         });
 
     }
-
 
     // -------------------
     // UPDATE UI
