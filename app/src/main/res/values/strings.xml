@@ -27,6 +27,6 @@
     <string name="articles_image">articles\'image</string>
     <string name="Arts">Arts</string>
 
-    <string name="notification_title">"New Notification"</string>
+    <string name="notification_title">"A new article is on line"</string>
 
 </resources>

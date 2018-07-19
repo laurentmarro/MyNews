@@ -8,19 +8,19 @@ import android.view.ViewGroup;
 import com.bumptech.glide.RequestManager;
 import com.example.android.mynews.Models.Result;
 import com.example.android.mynews.R;
-import com.example.android.mynews.Views.ArticleViewHolder;
+import com.example.android.mynews.ViewHolder.ArticleViewHolder;
 import java.util.List;
 
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
 
     // FOR DATA
-    private List<Result> results;
+    private List<Result> articles;
     private RequestManager glide;
 
     // CONSTRUCTOR
     public ArticleAdapter(List<Result> results, RequestManager glide) {
 
-        this.results = results;
+        this.articles = articles;
         this.glide = glide;
     }
 
@@ -30,7 +30,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
         // CREATE VIEW HOLDER AND INFLATING ITS XML LAYOUT
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.list_cell, parent, false);
+        View view = inflater.inflate(R.layout.list_article, parent, false);
 
         return new ArticleViewHolder(view);
     }
@@ -38,12 +38,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
     // UPDATE VIEW HOLDER
     @Override
     public void onBindViewHolder(ArticleViewHolder viewHolder, int position) {
-        viewHolder.update(this.results.get(position), this.glide);
+        viewHolder.update(this.articles.get(position), this.glide);
     }
 
     // RETURN THE TOTAL COUNT OF ITEMS IN THE LIST
     @Override
     public int getItemCount() {
-        return this.results.size();
+        return this.articles.size();
     }
 }

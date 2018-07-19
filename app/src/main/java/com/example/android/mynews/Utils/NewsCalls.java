@@ -39,7 +39,6 @@ public class NewsCalls {
                 if (callbacksWeakReference.get() != null)
                     callbacksWeakReference.get().onResponse(response.body());
 
-                List<Result> resultList = response.body().getResults();
             }
 
             @Override

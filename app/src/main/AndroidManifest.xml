@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".Controllers.MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,64 +23,64 @@
             <!-- Child1 of the main activity -->
 
         <activity
-            android:name=".Views.Notifications"
+            android:name=".Activities.NotificationsActivity"
             android:label="@string/notifications"
-            android:parentActivityName=".Controllers.MainActivity">
+            android:parentActivityName=".Activities.MainActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Controllers.MainActivity" />
+                android:value=".Activities.MainActivity" />
         </activity>
 
         <!-- Child2 of the main activity -->
 
         <activity
-            android:name=".Views.Search"
+            android:name=".Activities.SearchActivity"
             android:label="@string/search"
-            android:parentActivityName=".Controllers.MainActivity" >
+            android:parentActivityName=".Activities.MainActivity" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Controllers.MainActivity" />
+                android:value=".Activities.MainActivity" />
         </activity>
 
         <!-- Child3 of the main activity -->
 
         <activity
-            android:name=".Views.Help"
+            android:name=".Activities.HelpActivity"
             android:label="@string/help"
-            android:parentActivityName=".Controllers.MainActivity" >
+            android:parentActivityName=".Activities.MainActivity" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Controllers.MainActivity" />
+                android:value=".Activities.MainActivity" />
         </activity>
 
         <!-- Child4 of the main activity -->
 
         <activity
-            android:name=".Views.About"
+            android:name=".Activities.AboutActivity"
             android:label="@string/about"
-            android:parentActivityName=".Controllers.MainActivity" >
+            android:parentActivityName=".Activities.MainActivity" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Controllers.MainActivity" />
+                android:value=".Activities.MainActivity" />
         </activity>
 
         <activity
-            android:name=".Views.Article"
+            android:name=".Activities.ArticleActivity"
             android:label="@string/about"
-            android:parentActivityName=".Controllers.MainActivity" >
+            android:parentActivityName=".Activities.MainActivity" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Controllers.MainActivity" />
+                android:value=".Activities.MainActivity" />
         </activity>
 
     </application>

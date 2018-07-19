@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".Views.Notifications">
+    tools:context=".Activities.NotificationsActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -16,7 +16,7 @@
         android:orientation="vertical">
 
         <CheckBox
-            android:id="@+id/arts_checkBox"
+            android:id="@+id/arts_CheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/colorPrimary"
@@ -25,7 +25,7 @@
             android:text="@string/Arts" />
 
         <CheckBox
-            android:id="@+id/arts_checkBox2"
+            android:id="@+id/business_CheckBox"
             android:layout_width="wrap_content"
             android:buttonTint="@color/colorPrimary"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             android:text="@string/business" />
 
         <CheckBox
-            android:id="@+id/arts_checkBox3"
+            android:id="@+id/entrepreneurs_CheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/colorPrimary"
@@ -55,7 +55,7 @@
         tools:ignore="MissingConstraints">
 
         <CheckBox
-            android:id="@+id/arts_checkBox4"
+            android:id="@+id/politics_CheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/colorPrimary"
@@ -64,7 +64,7 @@
             android:text="@string/politics" />
 
         <CheckBox
-            android:id="@+id/arts_checkBox5"
+            android:id="@+id/sports_CheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/colorPrimary"
@@ -73,7 +73,7 @@
             android:text="@string/sports" />
 
         <CheckBox
-            android:id="@+id/arts_checkBox6"
+            android:id="@+id/travel_CheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/colorPrimary"
