@@ -87,7 +87,6 @@ public class SearchActivity extends AppCompatActivity {
                 displayDate2.setText(date2);
             }
         };
-
     }
 
     // ToolBar
@@ -103,5 +102,5 @@ public class SearchActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-    // Button to initialize ans search (see notifications)
+    // Button to initialize and search (see notifications)
 }

@@ -29,8 +29,9 @@ public class TopStoriesFragment extends Fragment {
 
     //FOR DATA
     private Call call;
-    private List<Result> results;
+    private List<Result> articles;
     private ArticleAdapter adapter;
+    private int number_of_articles;
 
     public static TopStoriesFragment newInstance() {
         return (new TopStoriesFragment());
@@ -57,9 +58,9 @@ public class TopStoriesFragment extends Fragment {
     // -----------------
 
     private void configureRecyclerView(){
-        this.results = new ArrayList<>();
+        this.articles = new ArrayList<>();
         // Create adapter passing in the sample user data
-        this.adapter = new ArticleAdapter(this.results, Glide.with(this));
+        this.adapter = new ArticleAdapter(this.articles, Glide.with(this));
         // Attach the adapter to the recyclerview to populate items
         this.recyclerView.setAdapter(this.adapter);
         // Set layout manager to position the items
@@ -83,26 +84,28 @@ public class TopStoriesFragment extends Fragment {
         NewsCalls.fetchUserArticle(new NewsCalls.Callbacks() {
             @Override
             public void onResponse(ArticleComposition articleComposition) {
-                articleComposition.getResults().get(0).getTitle();
-                articleComposition.getResults().get(0).getShortUrl();
-                articleComposition.getResults().get(0).getMultimedia().get(0).getUrl();
+                number_of_articles = articleComposition.getResults().size();
+                for (int i = 0; i < number_of_articles ; i++) {
+                    articleComposition.getResults().get(i).getTitle();
+                    articleComposition.getResults().get(i).getShortUrl();
+                    articleComposition.getResults().get(i).getMultimedia().get(0).getUrl();
+                }
             }
 
             @Override
             public void onFailure() {
-                Log.e("Error","No new article");
+                Log.e("Error : ","Internet failure");
             }
         });
-
     }
 
     // -------------------
     // UPDATE UI
     // -------------------
 
-    private void updateUI(List<Result> results){
-        results.clear();
-        results.addAll(results);
+    private void updateUI(List<Result> articles){
+        articles.clear();
+        articles.addAll(articles);
         adapter.notifyDataSetChanged();
         swipeRefreshLayout.setRefreshing(false);
     }

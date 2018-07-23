@@ -27,5 +27,7 @@
     <string name="articles_image">articles\'image</string>
     <string name="Arts">Arts</string>
     <string name="notification_title">"A new article is on line"</string>
+    <string name="information_no_notification">You need to ask something, to click at least a box and after you will be able to have notifications</string>
+    <string name="query_need_something">You have to ask something for your query</string>
 
 </resources>

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-
 import com.example.android.mynews.R;
 
 public class ArticleActivity extends AppCompatActivity {
@@ -14,7 +13,7 @@ public class ArticleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_webview);
         //1 - Configuring Toolbar
-        // this.configureToolbar();
+        this.configureToolbar();
     }
 
     private void configureToolbar() {

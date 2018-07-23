@@ -15,7 +15,7 @@ public interface NewsService {
     Call<ArticleComposition> getData();
 
     public static final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://api.github.com/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 }

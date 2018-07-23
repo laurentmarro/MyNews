@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start"
-    tools:context=".Activities.NotificationsActivity">
+    tools:openDrawer="start">
 
 
     <LinearLayout
@@ -16,7 +15,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/activity_query_input"
+            android:id="@+id/query_Input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textCursorDrawable="@drawable/color_cursor"
