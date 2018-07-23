@@ -1,9 +1,7 @@
 package com.example.android.mynews.Utils;
 
 import com.example.android.mynews.Models.ArticleComposition;
-import com.example.android.mynews.Models.Result;
 import java.lang.ref.WeakReference;
-import java.util.List;
 import io.reactivex.annotations.Nullable;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,7 +16,7 @@ public class NewsCalls {
     }
 
     // 2 - Public method to start fetching articles
-    public static void fetchUserArticle(Callbacks callbacks){
+    public static void fetchUserArticle(Callbacks callbacks, String fragmentToShow){
 
         // 2.1 - Create a weak reference to callback (avoid memory leaks)
         final WeakReference<Callbacks> callbacksWeakReference = new WeakReference<Callbacks>(callbacks);
@@ -28,7 +26,7 @@ public class NewsCalls {
 
         // 2.3 - Create the call on NYT API
 
-        Call<ArticleComposition> call = newsService.getData();
+        Call<ArticleComposition> call = newsService.getData(fragmentToShow);
 
         // 2.4 - Start the call
         call.enqueue(new Callback<ArticleComposition>() {

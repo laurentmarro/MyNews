@@ -19,23 +19,23 @@ import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
+import io.reactivex.annotations.Nullable;
 
-public class TopStoriesFragment extends Fragment {
+public class TopStoriesFragment extends Fragment implements NewsCalls.Callbacks {
 
     // FOR DESIGN
     @BindView(R.id.list) RecyclerView recyclerView;
     @BindView(R.id.fragment_swipe_container) SwipeRefreshLayout swipeRefreshLayout;
 
     //FOR DATA
-    private Call call;
     private List<Result> articles;
     private ArticleAdapter adapter;
-    private int number_of_articles;
 
     public static TopStoriesFragment newInstance() {
+
         return (new TopStoriesFragment());
     }
+
     public TopStoriesFragment() { }
 
     @Override
@@ -81,29 +81,24 @@ public class TopStoriesFragment extends Fragment {
     // -------------------
 
     private void executeHttpRequestWithRetrofit(){
-        NewsCalls.fetchUserArticle(new NewsCalls.Callbacks() {
-            @Override
-            public void onResponse(ArticleComposition articleComposition) {
-                number_of_articles = articleComposition.getResults().size();
-                for (int i = 0; i < number_of_articles ; i++) {
-                    articleComposition.getResults().get(i).getTitle();
-                    articleComposition.getResults().get(i).getShortUrl();
-                    articleComposition.getResults().get(i).getMultimedia().get(0).getUrl();
-                }
-            }
+        NewsCalls.fetchUserArticle(this,"topstories/v2/home");
+        }
 
-            @Override
-            public void onFailure() {
-                Log.e("Error : ","Internet failure");
-            }
-        });
-    }
+        // Override callback methods
 
-    // -------------------
+        @Override
+        public void onResponse(@Nullable ArticleComposition articleComposition) {
+            // 2.1 - When getting response, we update UI
+            if (articleComposition != null) this.updateUI(articleComposition);
+        }
+
+        @Override
+        public void onFailure() {
+            Log.e("Error : ","An error happened");
+        }
+
     // UPDATE UI
-    // -------------------
-
-    private void updateUI(List<Result> articles){
+    private void updateUI(ArticleComposition articleComposition) {
         articles.clear();
         articles.addAll(articles);
         adapter.notifyDataSetChanged();
