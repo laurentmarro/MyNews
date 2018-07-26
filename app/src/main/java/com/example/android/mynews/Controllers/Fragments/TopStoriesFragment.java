@@ -5,36 +5,39 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.android.mynews.Adapter.ArticleAdapter;
-import com.example.android.mynews.Models.ArticleComposition;
 import com.example.android.mynews.Models.Result;
 import com.example.android.mynews.R;
-import com.example.android.mynews.Utils.NewsCalls;
+import com.example.android.mynews.Utils.NewsStreams;
 import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.annotations.Nullable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
 
-public class TopStoriesFragment extends Fragment implements NewsCalls.Callbacks {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+
+public class TopStoriesFragment extends Fragment {
+
+    public static TopStoriesFragment newInstance() {
+        return (new TopStoriesFragment());
+    }
 
     // FOR DESIGN
     @BindView(R.id.list) RecyclerView recyclerView;
     @BindView(R.id.fragment_swipe_container) SwipeRefreshLayout swipeRefreshLayout;
 
     //FOR DATA
+    private Disposable disposable;
     private List<Result> articles;
     private ArticleAdapter adapter;
-
-    public static TopStoriesFragment newInstance() {
-
-        return (new TopStoriesFragment());
-    }
 
     public TopStoriesFragment() { }
 
@@ -51,6 +54,7 @@ public class TopStoriesFragment extends Fragment implements NewsCalls.Callbacks 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        this.disposeWhenDestroy();
     }
 
     // -----------------
@@ -81,27 +85,34 @@ public class TopStoriesFragment extends Fragment implements NewsCalls.Callbacks 
     // -------------------
 
     private void executeHttpRequestWithRetrofit(){
-        NewsCalls.fetchUserArticle(this,"topstories/v2/home");
-        }
+        this.disposable = NewsStreams
+                .streamFetchArticle("svc/topstories/v2/home.json?api-key=ff58457c72574ee094c10a7b22f5ebc7")
+                .subscribeWith(new DisposableObserver<List<Result>>() {
+            @Override
+            public void onNext(List<Result> resultList) {
+                updateUI(resultList);
+            }
 
-        // Override callback methods
+            @Override
+            public void onError(Throwable e) { }
 
-        @Override
-        public void onResponse(@Nullable ArticleComposition articleComposition) {
-            // 2.1 - When getting response, we update UI
-            if (articleComposition != null) this.updateUI(articleComposition);
-        }
+            @Override
+            public void onComplete() { }
+        });
+    }
 
-        @Override
-        public void onFailure() {
-            Log.e("Error : ","An error happened");
-        }
+    private void disposeWhenDestroy(){
+        if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();
+    }
 
+    // -------------------
     // UPDATE UI
-    private void updateUI(ArticleComposition articleComposition) {
-        articles.clear();
-        articles.addAll(articles);
-        adapter.notifyDataSetChanged();
+    // -------------------
+
+    private void updateUI(List<Result> articlesList){
         swipeRefreshLayout.setRefreshing(false);
+        articles.clear();
+        articles.addAll(articlesList);
+        adapter.notifyDataSetChanged();
     }
 }

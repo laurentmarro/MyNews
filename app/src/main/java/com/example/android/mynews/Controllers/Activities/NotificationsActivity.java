@@ -16,105 +16,136 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
-
 import com.example.android.mynews.R;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class NotificationsActivity extends AppCompatActivity {
 
-    private static CheckBox checkBox_Arts, checkBox_Business, checkBox_Entrepreneurs, checkBox_Politics, checkBox_Sports, checkBox_Travel;
+    private CheckBox checkBox_Arts, checkBox_Business, checkBox_Entrepreneurs, checkBox_Politics, checkBox_Sports, checkBox_Travel;
 
-    public enum NotificationsCheckboxes_and_names {
-        ARTS (checkBox_Arts, "CHECKBOX_ARTS"),
-        BUSINESS (checkBox_Business, "CHECKBOX_BUSINESS"),
-        ENTREPRENEURS (checkBox_Entrepreneurs, "CHECKBOX_ENTREPRENEURS"),
-        POLITICS (checkBox_Politics, "CHECKBOX_POLITICS"),
-        SPORTS (checkBox_Sports,"CHECKBOX_SPORTS"),
-        TRAVEL (checkBox_Travel,"CHECKBOX_TRAVEL");
+    private enum Categories {
+        checkBox_Arts("CHECKBOX_ARTS") ;
 
-        private CheckBox checkBoxes_names;
-        private String chechBoxex_values;
+        private String categories ;
 
-        // Constructor
-        NotificationsCheckboxes_and_names(CheckBox checkBox, String string) {
+        Categories(String categories) {
+            this.categories = categories ;
+        }
+
+        public String getCategories() {
+            return this.categories ;
         }
     }
 
     private final int NOTIFICATION_ID = 5; // as project number
     private final String NOTIFICATION_TAG = "MyNews"; // name of the app
-    SharedPreferences sharedPreferences;
+    private final List<CheckBox> checkBoxList = new ArrayList<>();
+    private SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_notifications);
+        setContentView(R.layout.activity_notifications);
         this.configureToolbar();
 
         // Widgets initialization
-        Switch notifications_Switch = (Switch) findViewById(R.id.notifications_Switch);
-        EditText query_Input = (EditText) findViewById(R.id.query_Input);
-        CheckBox checkBox_Arts = (CheckBox) findViewById(R.id.checkBox_Arts);
-        CheckBox checkBox_Business = (CheckBox) findViewById(R.id.checkBox_Business);
-        CheckBox checkbox_Entrepreneurs = (CheckBox) findViewById(R.id.checkbox_Entrepreneurs);
-        CheckBox checkbox_Politics = (CheckBox) findViewById(R.id.checkbox_Politics);
-        CheckBox checkBox_Sports = (CheckBox) findViewById(R.id.checkBox_Sports);
-        CheckBox checkBox_Travel = (CheckBox) findViewById(R.id.checkBox_Travel);
+        Switch notifications_switch = (Switch) findViewById(R.id.notifications_switch);
+        EditText queryInput = (EditText) findViewById(R.id.activity_query_input);
+        CheckBox checkBox_Arts = (CheckBox) findViewById(R.id.arts_CheckBox);
+        CheckBox checkBox_Business = (CheckBox) findViewById(R.id.business_CheckBox);
+        CheckBox checkBox_Entrepreneurs = (CheckBox) findViewById(R.id.entrepreneurs_CheckBox);
+        CheckBox checkBox_Politics = (CheckBox) findViewById(R.id.politics_CheckBox);
+        CheckBox checkBox_Sports = (CheckBox) findViewById(R.id.sports_CheckBox);
+        CheckBox checkBox_Travel = (CheckBox) findViewById(R.id.travel_CheckBox);
+
+        // checkBoxList
+        checkBoxList.add(checkBox_Arts);
+        checkBoxList.add(checkBox_Business);
+        checkBoxList.add(checkBox_Entrepreneurs);
+        checkBoxList.add(checkBox_Politics);
+        checkBoxList.add(checkBox_Sports);
+        checkBoxList.add(checkBox_Travel);
 
         // Put the switch to off
-        notifications_Switch.setChecked(false);
+        notifications_switch.setChecked(false);
 
         // Listeners
 
         // - EditText
-        query_Input.addTextChangedListener(new TextWatcher() {
+        queryInput.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                Log.i("Information : ",getString(R.string.query_need_something));
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.toString().length() > 0) {
-                    sharedPreferences.edit().putBoolean("QUERY_INPUT", true).apply();
+                    SharedPreferences.Editor editor = getSharedPreferences("QUERY_INPUT", MODE_PRIVATE).edit();
+                    editor.putBoolean("QUERY_INPUT",true);
+                    editor.apply();
                 }
                 else {
-                    sharedPreferences.edit().putBoolean("QUERY_INPUT", false).apply();
+                    SharedPreferences.Editor editor = getSharedPreferences("QUERY_INPUT", MODE_PRIVATE).edit();
+                    editor.putBoolean("QUERY_INPUT",false);
+                    editor.apply();
                 }
             }
+
             @Override
             public void afterTextChanged(Editable s) { }
         });
 
         // - Switch
-        notifications_Switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        notifications_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) {
-                    sharedPreferences.edit().putBoolean("SWITCH", true).apply();
+                    SharedPreferences.Editor editor = getSharedPreferences("SWITCH", MODE_PRIVATE).edit();
+                    editor.putBoolean("SWITCH",true);
+                    editor.apply();
                 }
                 else {
-                    sharedPreferences.edit().putBoolean("SWITCH", false).apply();
+                    SharedPreferences.Editor editor = getSharedPreferences("SWITCH", MODE_PRIVATE).edit();
+                    editor.putBoolean("SWITCH",false);
+                    editor.apply();
                 }
             }
         });
 
         // - Checkboxes
 
-        for (final NotificationsCheckboxes_and_names notificationsCheckboxes_and_names : NotificationsCheckboxes_and_names.values()) {
+        for (int i = 0; i < 6 ; i++) {
+            checkBoxList.get(i).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-            notificationsCheckboxes_and_names.checkBoxes_names.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                     if (isChecked) {
-                        sharedPreferences.edit().putBoolean(notificationsCheckboxes_and_names.chechBoxex_values, true).apply();
+                        SharedPreferences.Editor editor = getSharedPreferences("CHECKBOX_ARTS", MODE_PRIVATE).edit();
+                        editor.putBoolean("CHECKBOX_ARTS",true);
+                        editor.apply();
                     } else {
-                        sharedPreferences.edit().putBoolean(notificationsCheckboxes_and_names.chechBoxex_values, false).apply();
+                        SharedPreferences.Editor editor = getSharedPreferences("CHECKBOX_ARTS", MODE_PRIVATE).edit();
+                        editor.putBoolean("CHECKBOX_ARTS",false);
+                        editor.apply();
                     }
                 }
             });
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.conditionsForNotifications();
     }
 
     private void configureToolbar() {
@@ -128,17 +159,24 @@ public class NotificationsActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        this.conditionsForNotifications();
-    }
-
     private void conditionsForNotifications(){
+        String query_input = sharedPreferences.getString("", null);
+        String notifications_switch = sharedPreferences.getString("",null);
+        String arts = sharedPreferences.getString("",null);
+        String business = sharedPreferences.getString("",null);
+        String entrepreneurs = sharedPreferences.getString("",null);
+        String politics = sharedPreferences.getString("",null);
+        String sports = sharedPreferences.getString("",null);
+        String travel = sharedPreferences.getString("",null);
 
-        // work with enum
-
-        configureAlarmManager();
+        if ((query_input.equals(true)) && (notifications_switch.equals(true))
+                && ((arts.equals(true)) || (business.equals(true)) || (entrepreneurs.equals(true)) ||
+                    (politics.equals(true)) || (sports.equals(true)) || (travel.equals(true)))) {
+            configureAlarmManager();
+        }
+        else {
+            Log.i("Information : ",getString(R.string.information_no_notification));
+        }
     }
 
     private void configureAlarmManager(){
@@ -166,7 +204,7 @@ public class NotificationsActivity extends AppCompatActivity {
     }
 
     private void configureNotifications(){
-        // Methods to load articles => si articles nouveaux send sinon rien - Attention si nouvelle query
+        // Methods to load articles => if new articles send log information
         sendVisualNotification();
     }
 

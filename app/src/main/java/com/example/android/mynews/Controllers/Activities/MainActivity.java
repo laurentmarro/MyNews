@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     // For AlertDialog
-    String [] PARAMETERS = {"NotificationsActivity", "Help", "About"};
+    String [] PARAMETERS = {"Notifications", "Help", "About"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

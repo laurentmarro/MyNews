@@ -87,6 +87,7 @@ public class SearchActivity extends AppCompatActivity {
                 displayDate2.setText(date2);
             }
         };
+
     }
 
     // ToolBar
