@@ -1,70 +1,57 @@
 package com.example.android.mynews.Controllers.Activities;
 
-import android.app.AlarmManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
-import android.support.v4.app.NotificationCompat;
+import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 import com.example.android.mynews.R;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class NotificationsActivity extends AppCompatActivity {
 
-    private CheckBox checkBox_Arts, checkBox_Business, checkBox_Entrepreneurs, checkBox_Politics, checkBox_Sports, checkBox_Travel;
-
     private enum Categories {
-        checkBox_Arts("CHECKBOX_ARTS") ;
-
-        private String categories ;
-
-        Categories(String categories) {
-            this.categories = categories ;
-        }
-
-        public String getCategories() {
-            return this.categories ;
-        }
+        CHECKBOX_ARTS, CHECKBOX_BUSINESS, CHECKBOX_ENTREPRENEURS,
+        CHECKBOX_POLITICS, CHECKBOX_SPORTS, CHECKBOX_TRAVEL
     }
 
-    private final int NOTIFICATION_ID = 5; // as project number
-    private final String NOTIFICATION_TAG = "MyNews"; // name of the app
     private final List<CheckBox> checkBoxList = new ArrayList<>();
-    private SharedPreferences sharedPreferences;
-
+    private final List<String> categoriesList = new ArrayList<>();
+    private SharedPreferences preferences;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
         this.configureToolbar();
 
         // Widgets initialization
-        Switch notifications_switch = (Switch) findViewById(R.id.notifications_switch);
-        EditText queryInput = (EditText) findViewById(R.id.activity_query_input);
-        CheckBox checkBox_Arts = (CheckBox) findViewById(R.id.arts_CheckBox);
-        CheckBox checkBox_Business = (CheckBox) findViewById(R.id.business_CheckBox);
-        CheckBox checkBox_Entrepreneurs = (CheckBox) findViewById(R.id.entrepreneurs_CheckBox);
-        CheckBox checkBox_Politics = (CheckBox) findViewById(R.id.politics_CheckBox);
-        CheckBox checkBox_Sports = (CheckBox) findViewById(R.id.sports_CheckBox);
-        CheckBox checkBox_Travel = (CheckBox) findViewById(R.id.travel_CheckBox);
+        Switch notifications_switch = findViewById(R.id.notifications_switch);
+        EditText queryInput = findViewById(R.id.activity_query_input);
+        CheckBox checkBox_Arts = findViewById(R.id.arts_CheckBox);
+        CheckBox checkBox_Business = findViewById(R.id.business_CheckBox);
+        CheckBox checkBox_Entrepreneurs = findViewById(R.id.entrepreneurs_CheckBox);
+        CheckBox checkBox_Politics = findViewById(R.id.politics_CheckBox);
+        CheckBox checkBox_Sports = findViewById(R.id.sports_CheckBox);
+        CheckBox checkBox_Travel = findViewById(R.id.travel_CheckBox);
 
         // checkBoxList
         checkBoxList.add(checkBox_Arts);
@@ -74,48 +61,46 @@ public class NotificationsActivity extends AppCompatActivity {
         checkBoxList.add(checkBox_Sports);
         checkBoxList.add(checkBox_Travel);
 
-        // Put the switch to off
-        notifications_switch.setChecked(false);
-
-        // Listeners
+        // Create categoriesList from enum
+        for (Categories categories : Categories.values()) {
+            categoriesList.add(String.valueOf(categories));
+        }
 
         // - EditText
         queryInput.addTextChangedListener(new TextWatcher() {
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                Log.i("Information : ",getString(R.string.query_need_something));
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().length() > 0) {
-                    SharedPreferences.Editor editor = getSharedPreferences("QUERY_INPUT", MODE_PRIVATE).edit();
-                    editor.putBoolean("QUERY_INPUT",true);
+                SharedPreferences.Editor editor = preferences.edit();
+                if (s.toString().length() > 1) {
+                    editor.putBoolean("QUERY_INPUT", true);
+                    editor.putString("SENTENCE", String.valueOf(s));
                     editor.apply();
-                }
-                else {
-                    SharedPreferences.Editor editor = getSharedPreferences("QUERY_INPUT", MODE_PRIVATE).edit();
-                    editor.putBoolean("QUERY_INPUT",false);
+                } else {
+                    editor.putBoolean("QUERY_INPUT", false);
                     editor.apply();
                 }
             }
 
             @Override
-            public void afterTextChanged(Editable s) { }
+            public void afterTextChanged(Editable s) {
+            }
         });
 
         // - Switch
         notifications_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
-                    SharedPreferences.Editor editor = getSharedPreferences("SWITCH", MODE_PRIVATE).edit();
-                    editor.putBoolean("SWITCH",true);
+                SharedPreferences.Editor editor = preferences.edit();
+                if (isChecked) {
+                    editor.putBoolean("SWITCH", true);
                     editor.apply();
-                }
-                else {
-                    SharedPreferences.Editor editor = getSharedPreferences("SWITCH", MODE_PRIVATE).edit();
-                    editor.putBoolean("SWITCH",false);
+                } else {
+                    editor.putBoolean("SWITCH", false);
                     editor.apply();
                 }
             }
@@ -123,121 +108,147 @@ public class NotificationsActivity extends AppCompatActivity {
 
         // - Checkboxes
 
-        for (int i = 0; i < 6 ; i++) {
+        for (int i = 0; i < 6; i++) {
+            final String CHECKBOX_NAME = categoriesList.get(i);
+
             checkBoxList.get(i).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                    SharedPreferences.Editor editor = preferences.edit();
                     if (isChecked) {
-                        SharedPreferences.Editor editor = getSharedPreferences("CHECKBOX_ARTS", MODE_PRIVATE).edit();
-                        editor.putBoolean("CHECKBOX_ARTS",true);
+                        editor.putBoolean(CHECKBOX_NAME, true);
                         editor.apply();
                     } else {
-                        SharedPreferences.Editor editor = getSharedPreferences("CHECKBOX_ARTS", MODE_PRIVATE).edit();
-                        editor.putBoolean("CHECKBOX_ARTS",false);
+                        editor.putBoolean(CHECKBOX_NAME, false);
                         editor.apply();
                     }
                 }
             });
         }
+        this.updateWidgetDisplay();
+        this.conditionsForNotifications();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        this.conditionsForNotifications();
+    private void updateWidgetDisplay() {
+
+        // QUERY_INPUT
+        Boolean query = preferences.getBoolean("QUERY_INPUT", false);
+        String sentence = preferences.getString("SENTENCE", "");
+        if (query) {
+            EditText editText = findViewById(R.id.activity_query_input);
+            editText.setText(sentence);
+        }
+
+        // SWITCH_BUTTON
+        Boolean switch_button = preferences.getBoolean("SWITCH", false);
+        Switch notification_switch = findViewById(R.id.notifications_switch);
+        if (switch_button) {
+            notification_switch.setChecked(true);
+        } else {
+            notification_switch.setChecked(false);
+        }
+
+        // CHECKBOXES
+        for (int j = 0; j < 6; j++) {
+
+            Boolean checkboxes = preferences.getBoolean(categoriesList.get(j), false);
+
+            if (checkboxes) {
+                checkBoxList.get(j).setChecked(true);
+            } else {
+                checkBoxList.get(j).setChecked(false);
+            }
+        }
+    }
+
+    private void conditionsForNotifications() {
+        Boolean query = preferences.getBoolean("QUERY_INPUT", false);
+        Boolean switch_button = preferences.getBoolean("SWITCH", false);
+
+        if ((query) && (switch_button)) {
+            int k = 0;
+
+            while (!preferences.getBoolean(categoriesList.get(k), false)) {
+                k++;
+                if (k < 6) {
+                    this.showAlertDialogButtonClicked();
+                }
+                else {
+                    Log.i("Information : ", getString(R.string.information_no_notification));
+                }
+            }
+
+            this.showAlertDialogButtonClicked();
+        }
+        else {
+            Log.i("Information : ", getString(R.string.information_no_notification));
+            this.showAlertDialogButtonClicked();
+        }
+    }
+
+    public void showAlertDialogButtonClicked() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.warning);
+        builder.setMessage(R.string.do_you_want_to_update);
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("SWITCH", false);
+                Toast.makeText(getApplicationContext(), R.string.notifications_off,
+                        2*Toast.LENGTH_LONG).show();
+                editor.apply();
+                updateWidgetDisplay();
+                dialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent displayNotificationsActivity = new Intent(NotificationsActivity.this,
+                        DisplayNotificationsActivity.class);
+                startActivity(displayNotificationsActivity);
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+        Button button = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
+        //Set negative button text color
+        button.setTextColor(Color.MAGENTA);
+        Button button1 = alert.getButton(DialogInterface.BUTTON_POSITIVE);
+        //Set positive button text color
+        button1.setTextColor(Color.MAGENTA);
+
+        alert.getWindow();
+
+        // Setting Dialog View
+        Window window = alert.getWindow();
+        assert window != null;
+        window.setGravity(Gravity.CENTER | Gravity.BOTTOM);
+        alert.show();
+
+        // Convert the dps to pixels, based on density scale
+        final float scale = getResources().getDisplayMetrics().density;
+        int width = (int) (200 * scale + 0.5f);
+        int height = (int) (200 * scale + 0.5f); // because it's a square
+
+        window.setLayout(width, height);
     }
 
     private void configureToolbar() {
         //Get the toolbar (Serialise)
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         //Set the toolbar
         setSupportActionBar(toolbar);
         // Get a support ActionBar corresponding to this toolbar
         ActionBar actionBar = getSupportActionBar();
         // Enable the Up button
-        actionBar.setDisplayHomeAsUpEnabled(true);
-    }
-
-    private void conditionsForNotifications(){
-        String query_input = sharedPreferences.getString("", null);
-        String notifications_switch = sharedPreferences.getString("",null);
-        String arts = sharedPreferences.getString("",null);
-        String business = sharedPreferences.getString("",null);
-        String entrepreneurs = sharedPreferences.getString("",null);
-        String politics = sharedPreferences.getString("",null);
-        String sports = sharedPreferences.getString("",null);
-        String travel = sharedPreferences.getString("",null);
-
-        if ((query_input.equals(true)) && (notifications_switch.equals(true))
-                && ((arts.equals(true)) || (business.equals(true)) || (entrepreneurs.equals(true)) ||
-                    (politics.equals(true)) || (sports.equals(true)) || (travel.equals(true)))) {
-            configureAlarmManager();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        else {
-            Log.i("Information : ",getString(R.string.information_no_notification));
-        }
-    }
-
-    private void configureAlarmManager(){
-        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, NotificationsActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent,0);
-
-        // Set the alarm to start at 8:00 a.m.
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 8);
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND,0);
-
-        // Set interval
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY,pendingIntent);
-    }
-
-    public class AlarmReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            configureNotifications();
-        }
-    }
-
-    private void configureNotifications(){
-        // Methods to load articles => if new articles send log information
-        sendVisualNotification();
-    }
-
-    private void sendVisualNotification() {
-
-        // Create an Intent that will be shown when user will click on the Notification
-        Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-
-        // Create a Channel (Android 8)
-        String channelId = "5";
-
-        // Build a Notification object
-        NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(this, channelId)
-                        .setSmallIcon(R.drawable.ic_import_contacts_white_24dp)
-                        .setContentTitle(getString(R.string.app_name))
-                        .setContentText(getString(R.string.notification_title))
-                        .setAutoCancel(true)
-                        .setContentIntent(pendingIntent);
-
-        // Add the Notification to the Notification Manager and show it.
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        // Support Version >= Android 8
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence channelName = "New Article";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel mChannel = new NotificationChannel(channelId, channelName, importance);
-            notificationManager.createNotificationChannel(mChannel);
-        }
-
-        // Show notification
-        notificationManager.notify(NOTIFICATION_TAG, NOTIFICATION_ID, notificationBuilder.build());
     }
 }

@@ -22,7 +22,7 @@
             android:buttonTint="@color/colorPrimary"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
-            android:text="@string/Arts" />
+            android:text="@string/arts" />
 
         <CheckBox
             android:id="@+id/business_CheckBox"

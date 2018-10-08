@@ -15,37 +15,47 @@
         app:srcCompat="@mipmap/ic_launcher"/>
 
     <TextView
-        android:id="@+id/title"
-        android:contentDescription="@string/title"
-        android:layout_width="match_parent"
+        android:id="@+id/sectionandsubsection"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="80dp"
-        android:ellipsize="end"
-        android:lines="1"
-        android:text="@string/title"
-        android:textAlignment="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#000"
+        android:contentDescription="@string/sectionandsubsection"
+        android:text="@string/sectionandsubsection"
         android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="5dp"
+        android:contentDescription="@string/sectionandsubsection"
+        android:text="@string/date"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#000"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
         android:id="@+id/description"
-        android:contentDescription="@string/articles"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="80dp"
         android:layout_marginTop="0dp"
+        android:contentDescription="@string/articles"
         android:ellipsize="end"
         android:lines="2"
         android:text="@string/summary"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="#000"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#777"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/sectionandsubsection" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,9 +1,10 @@
 package com.example.android.mynews.Controllers.Activities;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+
 import com.example.android.mynews.R;
 
 public class ArticleActivity extends AppCompatActivity {
@@ -12,19 +13,15 @@ public class ArticleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_webview);
-        //1 - Configuring Toolbar
-        this.configureToolbar();
+        this.feedTheWebView(); // Call to load the url given by intent
     }
 
-    private void configureToolbar() {
-        //Get the toolbar (Serialise)
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //Set the toolbar
-        setSupportActionBar(toolbar);
-        // Get a support ActionBar corresponding to this toolbar
-        ActionBar actionBar = getSupportActionBar();
-        // Enable the Up button
-        actionBar.setDisplayHomeAsUpEnabled(true);
-    }
 
+    private void feedTheWebView() {
+        WebView webView;
+        String url = getIntent().getStringExtra("URL");
+        webView = findViewById(R.id.webview);
+        webView.setWebViewClient(new WebViewClient());
+        webView.loadUrl(url);
+    }
 }

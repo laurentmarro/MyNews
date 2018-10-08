@@ -17,9 +17,6 @@ import com.example.android.mynews.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    // For Design
-    private Toolbar toolbar;
-
     // For AlertDialog
     String [] PARAMETERS = {"Notifications", "Help", "About"};
 
@@ -33,20 +30,7 @@ public class MainActivity extends AppCompatActivity {
         this.configureViewPagerAndTabs();
     }
 
-    private void configureViewPagerAndTabs(){
-        // Get ViewPager from layout
-        ViewPager pager = (ViewPager)findViewById(R.id.activity_main_viewpager);
-        // Set Adapter PageAdapter and glue it together
-        pager.setAdapter(new FragmentAdapter(getSupportFragmentManager()) {
-        });
-        // Get TabLayout from layout
-        TabLayout tabs= (TabLayout)findViewById(R.id.activity_main_tabs);
-        // Glue TabLayout and ViewPager together
-        tabs.setupWithViewPager(pager);
-        // Design purpose. Tabs have the same width
-        tabs.setTabMode(TabLayout.MODE_FIXED);
-    }
-
+    // building options menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu and add it to the Toolbar
@@ -54,16 +38,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    // ---------------------
-    // CONFIGURATION
-    // ---------------------
-
-    // Configure Toolbar
-    private void configureToolBar(){
-        this.toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-    }
-
+    // Actions to do on click in options menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle actions on menu items
@@ -80,11 +55,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // ---------------------
-    // DIALOG
-    // ---------------------
-
+    // Method to manage action to do on clicking in params button
     public void alertDialogActivity(){
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setItems(PARAMETERS, new DialogInterface.OnClickListener() {
 
@@ -116,14 +89,44 @@ public class MainActivity extends AppCompatActivity {
 
         // Setting Dialog View
         Window window = dialog.getWindow();
+        assert window != null;
         window.setGravity(Gravity.END | Gravity.TOP);
         dialog.show();
 
         // Convert the dps to pixels, based on density scale
         final float scale = getResources().getDisplayMetrics().density;
         int width = (int) (200 * scale + 0.5f);
-        int height = width; // because it's a square
+        int height = (int) (200 * scale + 0.5f); // because it's a square
 
         window.setLayout(width,height);
+    }
+
+    // CONFIGURATION
+
+    // Configure Toolbar
+    private void configureToolBar(){
+        // For Design
+        Toolbar toolbar;
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    private void configureViewPagerAndTabs(){
+        // For Design
+        TabLayout tabLayout;
+        ViewPager viewPager;
+        FragmentAdapter fragmentAdapter;
+
+        // Get TabLayout from layout
+        tabLayout = findViewById(R.id.activity_main_tabs);
+        // Get ViewPager from layout
+        viewPager = findViewById(R.id.activity_main_viewpager);
+        //Set Adapter and glue it together
+        fragmentAdapter = new FragmentAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(fragmentAdapter);
+        // Design purpose. Tabs have the same width
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+        // Glue TabLayout and ViewPager together
+        tabLayout.setupWithViewPager(viewPager);
     }
 }

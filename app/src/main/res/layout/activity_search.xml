@@ -6,7 +6,7 @@
     android:id="@+id/activity_main_search"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controllers.Activities.SearchActivityy">
+    tools:context=".Controllers.Activities.SearchActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -60,10 +60,9 @@
             android:layout_marginStart="20dp"
             android:gravity="start"
             android:textSize="18sp"
-            android:backgroundTint="@color/colorPrimary"
             android:cursorVisible="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/Datepicker"
+            android:text="@string/date"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -76,10 +75,9 @@
             android:layout_marginEnd="20dp"
             android:gravity="start"
             android:textSize="18sp"
-            android:backgroundTint="@color/colorPrimary"
             android:cursorVisible="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/Datepicker"
+            android:text="@string/date"
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -103,13 +101,13 @@
             android:layout_marginTop="20dp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/searchButton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:background="@color/colorPrimary"
             android:text="@string/search"
             android:textColor="@color/colorAccent" />
 
