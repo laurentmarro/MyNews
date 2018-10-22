@@ -1,4 +1,4 @@
-#Thu Oct 04 13:09:45 CEST 2018
-base.0=/home/laurent/AndroidStudioProjects/MyNews/app/build/intermediates/transforms/dexMerger/debug/3
+#Mon Oct 22 07:54:06 CEST 2018
+base.0=C\:\\Users\\Laurent\\AndroidStudioProjects\\MyNews\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\3
 path.0=classes.dex
 renamed.0=classes.dex

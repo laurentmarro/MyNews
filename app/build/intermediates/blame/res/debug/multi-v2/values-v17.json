@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/laurent/AndroidStudioProjects/MyNews/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v17/values-v17.xml",
+            "outputFile": "C:\\Users\\Laurent\\AndroidStudioProjects\\MyNews\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v17\\values-v17.xml",
             "map": [
                 {
-                    "source": "/home/laurent/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/9f11824b78fdb708ae578dfdaca9bf87/res/values-v17/values-v17.xml",
+                    "source": "C:\\Users\\Laurent\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\abda8a32961728ff4e50eeb0ec52a375\\res\\values-v17\\values-v17.xml",
                     "from": {
                         "startLines": "2,5,9,12,15,18,22,25,29,33,37,40,43,46,50,53,57",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

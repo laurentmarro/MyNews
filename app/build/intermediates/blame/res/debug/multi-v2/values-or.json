@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/laurent/AndroidStudioProjects/MyNews/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-or/values-or.xml",
+            "outputFile": "C:\\Users\\Laurent\\AndroidStudioProjects\\MyNews\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-or\\values-or.xml",
             "map": [
                 {
-                    "source": "/home/laurent/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/9f11824b78fdb708ae578dfdaca9bf87/res/values-or/values-or.xml",
+                    "source": "C:\\Users\\Laurent\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\abda8a32961728ff4e50eeb0ec52a375\\res\\values-or\\values-or.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/home/laurent/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/1530e4ab95659974e8da422386065353/res/values-or/values-or.xml",
+                    "source": "C:\\Users\\Laurent\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\88ff7fc0a074d131ae379e8ded3ffabe\\res\\values-or\\values-or.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
