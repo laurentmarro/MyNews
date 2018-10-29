@@ -4,7 +4,6 @@ import com.example.android.mynews.Models.ArticleCompositionBusiness;
 import com.example.android.mynews.Models.ArticleCompositionMostPopular;
 import com.example.android.mynews.Models.ArticleCompositionTopStories;
 import com.example.android.mynews.Models.SearchComposition;
-
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

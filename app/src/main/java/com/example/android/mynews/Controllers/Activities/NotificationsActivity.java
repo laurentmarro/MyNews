@@ -175,14 +175,14 @@ public class NotificationsActivity extends AppCompatActivity {
                     this.showAlertDialogButtonClicked();
                 }
                 else {
-                    Log.i("Information : ", getString(R.string.information_no_notification));
+                    Log.i("Information ", getString(R.string.information_no_notification));
                 }
             }
 
             this.showAlertDialogButtonClicked();
         }
         else {
-            Log.i("Information : ", getString(R.string.information_no_notification));
+            Log.i("Information ", getString(R.string.information_no_notification));
             this.showAlertDialogButtonClicked();
         }
     }
@@ -197,7 +197,7 @@ public class NotificationsActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putBoolean("SWITCH", false);
                 Toast.makeText(getApplicationContext(), R.string.notifications_off,
-                        2*Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_LONG).show();
                 editor.apply();
                 updateWidgetDisplay();
                 dialog.dismiss();

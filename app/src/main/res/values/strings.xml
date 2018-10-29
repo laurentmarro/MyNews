@@ -39,6 +39,7 @@
     <string name="begindate">20180801</string>
     <string name="doyouwanttobenotified">Do you want to be notified of new article(s) using this search ?</string>
     <string name="notificationsupdated">Notifications_updated</string>
-    <string name="information_no_search">You need to ask something and to click at least a box</string>
     <string name="endatemustbeafterorsame">End Date must be after or the same than Begin Date</string>
+    <string name="informationnosearch">You need to ask something and to click at least a box to start the search</string>
+    <string name="present">We can\'t read in the future ! We still in the present</string>
 </resources>
