@@ -4,7 +4,6 @@ import com.example.android.mynews.Models.ArticleCompositionBusiness;
 import com.example.android.mynews.Models.ArticleCompositionMostPopular;
 import com.example.android.mynews.Models.ArticleCompositionTopStories;
 import com.example.android.mynews.Models.SearchComposition;
-
 import java.util.concurrent.TimeUnit;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;

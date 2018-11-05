@@ -2,6 +2,7 @@ package com.example.android.mynews.Controllers.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -44,7 +45,7 @@ public class BusinessFragment extends Fragment {
     public BusinessFragment() { }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_business, container, false);
         ButterKnife.bind(this, view);
         this.configureRecyclerView(); // Call during UI creation
@@ -77,6 +78,7 @@ public class BusinessFragment extends Fragment {
                     }
                 });
     }
+
     // -----------------
     // CONFIGURATION
     // -----------------

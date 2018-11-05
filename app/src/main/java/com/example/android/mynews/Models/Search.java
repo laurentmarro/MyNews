@@ -2,7 +2,6 @@ package com.example.android.mynews.Models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
 
 public class Search {
@@ -12,6 +11,9 @@ public class Search {
     @SerializedName("snippet")
     @Expose
     private String snippet;
+    @SerializedName("print_page")
+    @Expose
+    private String printPage;
     @SerializedName("blog")
     @Expose
     private Blog blog;
@@ -20,7 +22,7 @@ public class Search {
     private String source;
     @SerializedName("multimedia")
     @Expose
-    private List<ArticleMultimedium> multimedia = null;
+    private List<MultimediumSearch> multimedia = null;
     @SerializedName("headline")
     @Expose
     private Headline headline;
@@ -74,6 +76,14 @@ public class Search {
         this.snippet = snippet;
     }
 
+    public String getPrintPage() {
+        return printPage;
+    }
+
+    public void setPrintPage(String printPage) {
+        this.printPage = printPage;
+    }
+
     public Blog getBlog() {
         return blog;
     }
@@ -90,11 +100,11 @@ public class Search {
         this.source = source;
     }
 
-    public List<ArticleMultimedium> getMultimedia() {
+    public List<MultimediumSearch> getMultimedia() {
         return multimedia;
     }
 
-    public void setMultimedia(List<ArticleMultimedium> multimedia) {
+    public void setMultimedia(List<MultimediumSearch> multimedia) {
         this.multimedia = multimedia;
     }
 

@@ -88,7 +88,7 @@
 
         <receiver android:name=".Controllers.Activities.DisplayNotificationsActivity$AlarmReceiver" />
 
-        <activity android:name=".Controllers.Activities.SearchAndDisplayActivty"></activity>
+        <activity android:name=".Controllers.Activities.SearchAndDisplayActivity" />
     </application>
 
 </manifest>

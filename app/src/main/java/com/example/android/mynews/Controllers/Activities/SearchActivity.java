@@ -24,6 +24,7 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.example.android.mynews.R;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -324,7 +325,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void executeSearch() {
         // Launch new activity to search and display results
-        Intent intent = new Intent(SearchActivity.this, SearchAndDisplayActivty.class);
+        Intent intent = new Intent(SearchActivity.this, SearchAndDisplayActivity.class);
         startActivity(intent);
     }
 

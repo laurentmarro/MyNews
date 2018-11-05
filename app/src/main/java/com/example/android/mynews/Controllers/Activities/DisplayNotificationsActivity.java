@@ -11,8 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-
 import com.example.android.mynews.R;
 import java.util.Calendar;
 
@@ -36,7 +34,7 @@ public class DisplayNotificationsActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, 8);
-        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.MINUTE, 30);
         calendar.set(Calendar.SECOND,0);
         // Set interval
         assert alarmManager != null;
@@ -48,7 +46,7 @@ public class DisplayNotificationsActivity extends AppCompatActivity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            // Using SearchAndDisplayActivity
+            // Using SearchAndDisplayActivity without display
             // sendVisualNotification();
         }
     }

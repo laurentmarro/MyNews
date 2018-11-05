@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Person {
-
     @SerializedName("firstname")
     @Expose
     private String firstname;
@@ -13,7 +12,7 @@ public class Person {
     private Object middlename;
     @SerializedName("lastname")
     @Expose
-    private Object lastname;
+    private String lastname;
     @SerializedName("qualifier")
     @Expose
     private Object qualifier;
@@ -46,11 +45,11 @@ public class Person {
         this.middlename = middlename;
     }
 
-    public Object getLastname() {
+    public String getLastname() {
         return lastname;
     }
 
-    public void setLastname(Object lastname) {
+    public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 

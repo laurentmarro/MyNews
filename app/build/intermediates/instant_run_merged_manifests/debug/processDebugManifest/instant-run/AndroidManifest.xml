@@ -95,7 +95,7 @@
 
         <receiver android:name="com.example.android.mynews.Controllers.Activities.DisplayNotificationsActivity$AlarmReceiver" />
 
-        <activity android:name="com.example.android.mynews.Controllers.Activities.SearchAndDisplayActivty" />
+        <activity android:name="com.example.android.mynews.Controllers.Activities.SearchAndDisplayActivity" />
 
         <provider
             android:name="com.android.tools.ir.server.InstantRunContentProvider"

@@ -164,10 +164,10 @@ receiver#com.example.android.mynews.Controllers.Activities.DisplayNotificationsA
 ADDED from C:\Users\Laurent\AndroidStudioProjects\MyNews\app\src\main\AndroidManifest.xml:89:9-103
 	android:name
 		ADDED from C:\Users\Laurent\AndroidStudioProjects\MyNews\app\src\main\AndroidManifest.xml:89:19-100
-activity#com.example.android.mynews.Controllers.Activities.SearchAndDisplayActivty
-ADDED from C:\Users\Laurent\AndroidStudioProjects\MyNews\app\src\main\AndroidManifest.xml:91:9-93
+activity#com.example.android.mynews.Controllers.Activities.SearchAndDisplayActivity
+ADDED from C:\Users\Laurent\AndroidStudioProjects\MyNews\app\src\main\AndroidManifest.xml:91:9-85
 	android:name
-		ADDED from C:\Users\Laurent\AndroidStudioProjects\MyNews\app\src\main\AndroidManifest.xml:91:19-81
+		ADDED from C:\Users\Laurent\AndroidStudioProjects\MyNews\app\src\main\AndroidManifest.xml:91:19-82
 uses-sdk
 INJECTED from C:\Users\Laurent\AndroidStudioProjects\MyNews\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Laurent\AndroidStudioProjects\MyNews\app\src\main\AndroidManifest.xml

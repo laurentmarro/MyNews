@@ -15,10 +15,10 @@ import butterknife.ButterKnife;
 
 public class SearchViewHolder extends RecyclerView.ViewHolder {
 
-@BindView(R.id.sectionandsubsection) TextView sectionandsubsection;
-@BindView(R.id.description) TextView description;
-@BindView(R.id.articleimage) ImageView articleimage;
-@BindView(R.id.date) TextView article_date;
+    @BindView(R.id.sectionandsubsection) TextView sectionandsubsection;
+    @BindView(R.id.description) TextView description;
+    @BindView(R.id.articleimage) ImageView articleimage;
+    @BindView(R.id.date) TextView article_date;
 
     public SearchViewHolder(View itemView) {
         super(itemView);
@@ -34,7 +34,7 @@ public class SearchViewHolder extends RecyclerView.ViewHolder {
 
         // Section and SubSection
         if (article.getSectionName().equals("")) {
-        sectionAndSubsection = "Not set";
+        sectionAndSubsection = "";
         } else sectionAndSubsection = article.getSectionName();
 
         @SuppressLint("SimpleDateFormat") SimpleDateFormat sourceFormat = new SimpleDateFormat("yyyy-mm-dd");

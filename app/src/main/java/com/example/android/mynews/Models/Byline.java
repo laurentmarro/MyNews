@@ -6,16 +6,15 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Byline {
-
     @SerializedName("original")
     @Expose
     private String original;
     @SerializedName("person")
     @Expose
-    private List<Object> person = null;
+    private List<Person> person = null;
     @SerializedName("organization")
     @Expose
-    private String organization;
+    private Object organization;
 
     public String getOriginal() {
         return original;
@@ -25,19 +24,19 @@ public class Byline {
         this.original = original;
     }
 
-    public List<Object> getPerson() {
+    public List<Person> getPerson() {
         return person;
     }
 
-    public void setPerson(List<Object> person) {
+    public void setPerson(List<Person> person) {
         this.person = person;
     }
 
-    public String getOrganization() {
+    public Object getOrganization() {
         return organization;
     }
 
-    public void setOrganization(String organization) {
+    public void setOrganization(Object organization) {
         this.organization = organization;
     }
 

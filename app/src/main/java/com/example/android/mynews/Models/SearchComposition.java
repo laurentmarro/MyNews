@@ -1,32 +1,42 @@
 package com.example.android.mynews.Models;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class SearchComposition {
 
-    @SerializedName("docs")
+    @SerializedName("status")
     @Expose
-    private List<Search> docs = null;
-    @SerializedName("meta")
+    private String status;
+    @SerializedName("copyright")
     @Expose
-    private Meta meta;
+    private String copyright;
+    @SerializedName("response")
+    @Expose
+    private Response response;
 
-    public List<Search> getDocs() {
-        return docs;
+    public String getStatus() {
+        return status;
     }
 
-    public void setDocs(List<Search> docs) {
-        this.docs = docs;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public Meta getMeta() {
-        return meta;
+    public String getCopyright() {
+        return copyright;
     }
 
-    public void setMeta(Meta meta) {
-        this.meta = meta;
+    public void setCopyright(String copyright) {
+        this.copyright = copyright;
+    }
+
+    public Response getResponse() {
+        return response;
+    }
+
+    public void setResponse(Response response) {
+        this.response = response;
     }
 
 }
