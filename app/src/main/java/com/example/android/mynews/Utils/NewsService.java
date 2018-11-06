@@ -1,9 +1,8 @@
 package com.example.android.mynews.Utils;
 
-import com.example.android.mynews.Models.ArticleCompositionBusiness;
-import com.example.android.mynews.Models.ArticleCompositionMostPopular;
-import com.example.android.mynews.Models.ArticleCompositionTopStories;
-import com.example.android.mynews.Models.SearchComposition;
+import com.example.android.mynews.Models.BusinessModels.ArticleCompositionBusiness;
+import com.example.android.mynews.Models.MostPopularModels.ArticleCompositionMostPopular;
+import com.example.android.mynews.Models.TopStoriesModels.ArticleCompositionTopStories;
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -20,9 +19,6 @@ public interface NewsService {
 
     @GET
     Observable<ArticleCompositionBusiness> getDataBusiness(@Url String fragment);
-
-    @GET
-    Observable<SearchComposition> getDataSearch(@Url String search);
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://api.nytimes.com/svc/")

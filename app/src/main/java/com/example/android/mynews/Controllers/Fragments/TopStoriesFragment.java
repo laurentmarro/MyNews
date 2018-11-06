@@ -2,6 +2,7 @@ package com.example.android.mynews.Controllers.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,8 +14,8 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.android.mynews.Adapter.ArticleTopStoriesAdapter;
 import com.example.android.mynews.Controllers.Activities.ArticleActivity;
-import com.example.android.mynews.Models.ArticleCompositionTopStories;
-import com.example.android.mynews.Models.ArticleTopStories;
+import com.example.android.mynews.Models.TopStoriesModels.ArticleCompositionTopStories;
+import com.example.android.mynews.Models.TopStoriesModels.ArticleTopStories;
 import com.example.android.mynews.R;
 import com.example.android.mynews.Utils.ItemClickSupport;
 import com.example.android.mynews.Utils.NewsStreams;
@@ -44,7 +45,7 @@ public class TopStoriesFragment extends Fragment {
     public TopStoriesFragment() { }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_top_stories, container, false);
         ButterKnife.bind(this, view);
         this.configureRecyclerView(); // Call during UI creation

@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.RequestManager;
-import com.example.android.mynews.Models.ArticleMostPopular;
+import com.example.android.mynews.Models.MostPopularModels.ArticleMostPopular;
 import com.example.android.mynews.R;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

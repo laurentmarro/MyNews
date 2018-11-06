@@ -2,11 +2,12 @@ package com.example.android.mynews.ViewHolder;
 
 import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.RequestManager;
-import com.example.android.mynews.Models.ArticleBusiness;
+import com.example.android.mynews.Models.BusinessModels.ArticleBusiness;
 import com.example.android.mynews.R;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

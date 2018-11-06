@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.bumptech.glide.RequestManager;
-import com.example.android.mynews.Models.ArticleBusiness;
+import com.example.android.mynews.Models.BusinessModels.ArticleBusiness;
 import com.example.android.mynews.R;
 import com.example.android.mynews.ViewHolder.ArticleBusinessViewHolder;
 import java.util.List;
@@ -37,7 +37,7 @@ public class ArticleBusinessAdapter extends RecyclerView.Adapter<ArticleBusiness
     // UPDATE VIEW HOLDER
     @Override
     public void onBindViewHolder(@NonNull ArticleBusinessViewHolder viewHolder, int position) {
-        viewHolder.updateWithArticles(this.articles.get(position),this.glide);
+            viewHolder.updateWithArticles(this.articles.get(position),this.glide);
     }
 
     // RETURN THE TOTAL COUNT OF ITEMS IN THE LIST

@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.bumptech.glide.RequestManager;
-import com.example.android.mynews.Models.ArticleMostPopular;
+import com.example.android.mynews.Models.MostPopularModels.ArticleMostPopular;
 import com.example.android.mynews.R;
 import com.example.android.mynews.ViewHolder.ArticleMostPopularViewHolder;
 import java.util.List;

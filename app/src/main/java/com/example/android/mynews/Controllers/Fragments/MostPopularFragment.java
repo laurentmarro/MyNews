@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.android.mynews.Adapter.ArticleMostPopularAdapter;
 import com.example.android.mynews.Controllers.Activities.ArticleActivity;
-import com.example.android.mynews.Models.ArticleCompositionMostPopular;
-import com.example.android.mynews.Models.ArticleMostPopular;
+import com.example.android.mynews.Models.MostPopularModels.ArticleCompositionMostPopular;
+import com.example.android.mynews.Models.MostPopularModels.ArticleMostPopular;
 import com.example.android.mynews.R;
 import com.example.android.mynews.Utils.ItemClickSupport;
 import com.example.android.mynews.Utils.NewsStreams;
@@ -33,8 +33,10 @@ public class MostPopularFragment extends Fragment {
     }
 
     // FOR DESIGN
-    @BindView(R.id.mostpopular_recycler_view) RecyclerView recyclerView; // Declare RecyclerView
-    @BindView(R.id.mostpopular_swipe_container) SwipeRefreshLayout swipeRefreshLayout; // Declare the SwipeRefreshLayout
+    @BindView(R.id.mostpopular_recycler_view)
+    RecyclerView recyclerView; // Declare RecyclerView
+    @BindView(R.id.mostpopular_swipe_container)
+    SwipeRefreshLayout swipeRefreshLayout; // Declare the SwipeRefreshLayout
 
     //FOR DATA
     private Disposable disposable;
@@ -122,12 +124,11 @@ public class MostPopularFragment extends Fragment {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("MostPopular : ","On Error"+Log.getStackTraceString(e));
+                        Log.i("TopStories : ","On Error"+Log.getStackTraceString(e));
                     }
 
                     @Override
-                    public void onComplete() {
-                    }
+                    public void onComplete() { }
                 });
     }
 
