@@ -1,7 +1,5 @@
 package com.example.android.mynews.Utils;
 
-import android.util.Log;
-
 import com.example.android.mynews.Models.BusinessModels.ArticleCompositionBusiness;
 import com.example.android.mynews.Models.MostPopularModels.ArticleCompositionMostPopular;
 import com.example.android.mynews.Models.SearchModels.ArticleCompositionSearch;
@@ -29,7 +27,6 @@ public class NewsStreams {
     }
 
     public static Observable<ArticleCompositionBusiness> streamFetchArticleBusiness(String businessfragment){
-        Log.i("TAG", "streamFetchArticleBusiness: ");
         NewsService newsService = NewsService.retrofit.create(NewsService.class);
         return newsService.getDataBusiness(businessfragment)
                 .subscribeOn(Schedulers.io())

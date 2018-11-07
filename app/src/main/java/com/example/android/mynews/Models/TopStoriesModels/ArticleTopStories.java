@@ -77,14 +77,6 @@ public class ArticleTopStories {
         this.subsection = subsection;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getAbstract() {
         return _abstract;
     }
@@ -101,92 +93,12 @@ public class ArticleTopStories {
         this.url = url;
     }
 
-    public String getByline() {
-        return byline;
-    }
-
-    public void setByline(String byline) {
-        this.byline = byline;
-    }
-
-    public String getItemType() {
-        return itemType;
-    }
-
-    public void setItemType(String itemType) {
-        this.itemType = itemType;
-    }
-
-    public String getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(String updatedDate) {
-        this.updatedDate = updatedDate;
-    }
-
-    public String getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(String createdDate) {
-        this.createdDate = createdDate;
-    }
-
     public String getPublishedDate() {
         return publishedDate;
     }
 
     public void setPublishedDate(String publishedDate) {
         this.publishedDate = publishedDate;
-    }
-
-    public String getMaterialTypeFacet() {
-        return materialTypeFacet;
-    }
-
-    public void setMaterialTypeFacet(String materialTypeFacet) {
-        this.materialTypeFacet = materialTypeFacet;
-    }
-
-    public String getKicker() {
-        return kicker;
-    }
-
-    public void setKicker(String kicker) {
-        this.kicker = kicker;
-    }
-
-    public List<Object> getDesFacet() {
-        return desFacet;
-    }
-
-    public void setDesFacet(List<Object> desFacet) {
-        this.desFacet = desFacet;
-    }
-
-    public List<Object> getOrgFacet() {
-        return orgFacet;
-    }
-
-    public void setOrgFacet(List<Object> orgFacet) {
-        this.orgFacet = orgFacet;
-    }
-
-    public List<Object> getPerFacet() {
-        return perFacet;
-    }
-
-    public void setPerFacet(List<Object> perFacet) {
-        this.perFacet = perFacet;
-    }
-
-    public List<Object> getGeoFacet() {
-        return geoFacet;
-    }
-
-    public void setGeoFacet(List<Object> geoFacet) {
-        this.geoFacet = geoFacet;
     }
 
     public List<ArticleMultimediumTopStories> getMultimedia() {
@@ -196,13 +108,4 @@ public class ArticleTopStories {
     public void setMultimedia(List<ArticleMultimediumTopStories> multimedia) {
         this.multimedia = multimedia;
     }
-
-    public String getShortUrl() {
-        return shortUrl;
-    }
-
-    public void setShortUrl(String shortUrl) {
-        this.shortUrl = shortUrl;
-    }
-
 }

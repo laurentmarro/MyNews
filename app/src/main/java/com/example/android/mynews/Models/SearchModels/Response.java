@@ -8,9 +8,6 @@ public class Response {
     @SerializedName("docs")
     @Expose
     private List<ArticleSearch> docs = null;
-    @SerializedName("meta")
-    @Expose
-    private Meta meta;
 
     public List<ArticleSearch> getDocs() {
         return docs;

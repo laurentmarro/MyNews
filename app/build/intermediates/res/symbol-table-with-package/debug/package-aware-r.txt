@@ -1074,6 +1074,7 @@ id activity_main_search
 id activity_main_tabs
 id activity_main_viewpager
 id activity_query_input
+id activity_search_and_display_frame_layout
 id add
 id alertTitle
 id all
@@ -1206,8 +1207,6 @@ id scrollIndicatorUp
 id scrollView
 id scrollable
 id searchButton
-id search_and_display_recycler_view
-id search_and_display_swipe_container
 id search_badge
 id search_bar
 id search_button
@@ -1216,7 +1215,9 @@ id search_edit_frame
 id search_go_btn
 id search_mag_icon
 id search_plate
+id search_recycler_view
 id search_src_text
+id search_swipe_container
 id search_voice_btn
 id sectionandsubsection
 id select_dialog_listview

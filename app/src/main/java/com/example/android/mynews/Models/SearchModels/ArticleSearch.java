@@ -1,32 +1,26 @@
 package com.example.android.mynews.Models.SearchModels;
 
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class ArticleSearch {
+
     @SerializedName("web_url")
     @Expose
     private String webUrl;
     @SerializedName("snippet")
     @Expose
     private String snippet;
-    @SerializedName("blog")
+    @SerializedName("print_page")
     @Expose
-    private Blog blog;
+    private String printPage;
     @SerializedName("source")
     @Expose
     private String source;
     @SerializedName("multimedia")
     @Expose
     private List<Multimedium> multimedia = null;
-    @SerializedName("headline")
-    @Expose
-    private Headline headline;
-    @SerializedName("keywords")
-    @Expose
-    private List<Keyword> keywords = null;
     @SerializedName("pub_date")
     @Expose
     private String pubDate;
@@ -39,9 +33,6 @@ public class ArticleSearch {
     @SerializedName("section_name")
     @Expose
     private String sectionName;
-    @SerializedName("byline")
-    @Expose
-    private Byline byline;
     @SerializedName("type_of_material")
     @Expose
     private String typeOfMaterial;

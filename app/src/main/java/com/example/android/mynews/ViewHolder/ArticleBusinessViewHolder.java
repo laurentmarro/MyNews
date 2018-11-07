@@ -2,7 +2,6 @@ package com.example.android.mynews.ViewHolder;
 
 import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,6 +26,7 @@ public class ArticleBusinessViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void updateWithArticles(ArticleBusiness article, RequestManager glide) {
+
         String sectionAndSubsection;
         String formattedDate;
         String description_text;
@@ -50,7 +50,7 @@ public class ArticleBusinessViewHolder extends RecyclerView.ViewHolder {
         }
 
         // Description
-        if (article.getAbstract().equals("")) {
+        if (article.getAbstract().equals("")){
             description_text = "Unwritten";
         } else description_text = article.getAbstract();
 

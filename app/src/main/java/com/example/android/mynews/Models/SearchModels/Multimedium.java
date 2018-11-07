@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Multimedium {
+
     @SerializedName("rank")
     @Expose
     private Integer rank;
@@ -28,9 +29,6 @@ public class Multimedium {
     @SerializedName("width")
     @Expose
     private Integer width;
-    @SerializedName("legacy")
-    @Expose
-    private Legacy legacy;
     @SerializedName("subType")
     @Expose
     private String subType;

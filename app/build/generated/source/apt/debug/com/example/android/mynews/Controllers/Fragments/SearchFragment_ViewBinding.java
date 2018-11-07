@@ -19,8 +19,8 @@ public class SearchFragment_ViewBinding implements Unbinder {
   public SearchFragment_ViewBinding(SearchFragment target, View source) {
     this.target = target;
 
-    target.recyclerView = Utils.findRequiredViewAsType(source, R.id.search_and_display_recycler_view, "field 'recyclerView'", RecyclerView.class);
-    target.swipeRefreshLayout = Utils.findRequiredViewAsType(source, R.id.search_and_display_swipe_container, "field 'swipeRefreshLayout'", SwipeRefreshLayout.class);
+    target.recyclerView = Utils.findRequiredViewAsType(source, R.id.search_recycler_view, "field 'recyclerView'", RecyclerView.class);
+    target.swipeRefreshLayout = Utils.findRequiredViewAsType(source, R.id.search_swipe_container, "field 'swipeRefreshLayout'", SwipeRefreshLayout.class);
   }
 
   @Override

@@ -1,13 +1,11 @@
 package com.example.android.mynews.Models.BusinessModels;
 
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import java.util.List;
 
 public class ArticleBusiness {
-    @SerializedName("slug_name")
-    @Expose
-    private String slugName;
+
     @SerializedName("section")
     @Expose
     private String section;
@@ -26,15 +24,9 @@ public class ArticleBusiness {
     @SerializedName("byline")
     @Expose
     private String byline;
-    @SerializedName("thumbnail_standard")
-    @Expose
-    private String thumbnailStandard;
     @SerializedName("item_type")
     @Expose
     private String itemType;
-    @SerializedName("source")
-    @Expose
-    private String source;
     @SerializedName("updated_date")
     @Expose
     private String updatedDate;
@@ -44,18 +36,12 @@ public class ArticleBusiness {
     @SerializedName("published_date")
     @Expose
     private String publishedDate;
-    @SerializedName("first_published_date")
-    @Expose
-    private String firstPublishedDate;
     @SerializedName("material_type_facet")
     @Expose
     private String materialTypeFacet;
     @SerializedName("kicker")
     @Expose
-    private Object kicker;
-    @SerializedName("subheadline")
-    @Expose
-    private Object subheadline;
+    private String kicker;
     @SerializedName("des_facet")
     @Expose
     private List<String> desFacet = null;
@@ -64,16 +50,16 @@ public class ArticleBusiness {
     private List<String> orgFacet = null;
     @SerializedName("per_facet")
     @Expose
-    private List<String> perFacet = null;
+    private List<Object> perFacet = null;
     @SerializedName("geo_facet")
     @Expose
-    private List<String> geoFacet = null;
-    @SerializedName("related_urls")
-    @Expose
-    private Object relatedUrls;
+    private List<Object> geoFacet = null;
     @SerializedName("multimedia")
     @Expose
     private List<MultimediumBusiness> multimedia = null;
+    @SerializedName("short_url")
+    @Expose
+    private String shortUrl;
 
     public String getSection() {
         return section;
@@ -81,11 +67,6 @@ public class ArticleBusiness {
 
     public void setSection(String section) {
         this.section = section;
-    }
-
-    public ArticleBusiness withSection(String section) {
-        this.section = section;
-        return this;
     }
 
     public String getSubsection() {
@@ -96,22 +77,12 @@ public class ArticleBusiness {
         this.subsection = subsection;
     }
 
-    public ArticleBusiness withSubsection(String subsection) {
-        this.subsection = subsection;
-        return this;
-    }
-
     public String getAbstract() {
         return _abstract;
     }
 
     public void setAbstract(String _abstract) {
         this._abstract = _abstract;
-    }
-
-    public ArticleBusiness withAbstract(String _abstract) {
-        this._abstract = _abstract;
-        return this;
     }
 
     public String getUrl() {
@@ -122,11 +93,6 @@ public class ArticleBusiness {
         this.url = url;
     }
 
-    public ArticleBusiness withUrl(String url) {
-        this.url = url;
-        return this;
-    }
-
     public String getPublishedDate() {
         return publishedDate;
     }
@@ -135,21 +101,11 @@ public class ArticleBusiness {
         this.publishedDate = publishedDate;
     }
 
-    public ArticleBusiness withPublishedDate(String publishedDate) {
-        this.publishedDate = publishedDate;
-        return this;
-    }
-
     public List<MultimediumBusiness> getMultimedia() {
         return multimedia;
     }
 
     public void setMultimedia(List<MultimediumBusiness> multimedia) {
         this.multimedia = multimedia;
-    }
-
-    public ArticleBusiness withMultimedia(List<MultimediumBusiness> multimedia) {
-        this.multimedia = multimedia;
-        return this;
     }
 }

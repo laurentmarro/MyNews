@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ArticleCompositionSearch {
+
     @SerializedName("status")
     @Expose
     private String status;
@@ -14,7 +15,7 @@ public class ArticleCompositionSearch {
     @Expose
     private Response response;
 
-  public Response getResponse() {
+    public Response getResponse() {
         return response;
     }
 

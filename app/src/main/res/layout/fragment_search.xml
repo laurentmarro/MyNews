@@ -1,17 +1,17 @@
 <android.support.v4.widget.SwipeRefreshLayout
 
-    android:id="@+id/search_and_display_swipe_container"
+    android:id="@+id/search_swipe_container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Controllers.Fragments.SearchFragment"
+    tools:context="Controllers.Fragments.TopStoriesFragment"
     android:gravity="center"
     android:background="#fff">
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/search_and_display_recycler_view" />
+        android:id="@+id/search_recycler_view" />
 
 </android.support.v4.widget.SwipeRefreshLayout>

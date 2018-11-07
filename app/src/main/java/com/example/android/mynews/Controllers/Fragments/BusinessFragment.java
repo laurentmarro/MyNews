@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.android.mynews.Adapter.ArticleBusinessAdapter;
 import com.example.android.mynews.Controllers.Activities.ArticleActivity;
-import com.example.android.mynews.Models.BusinessModels.ArticleBusiness;
 import com.example.android.mynews.Models.BusinessModels.ArticleCompositionBusiness;
+import com.example.android.mynews.Models.BusinessModels.ArticleBusiness;
 import com.example.android.mynews.R;
 import com.example.android.mynews.Utils.ItemClickSupport;
 import com.example.android.mynews.Utils.NewsStreams;
@@ -33,12 +33,13 @@ public class BusinessFragment extends Fragment {
     }
 
     // FOR DESIGN
-    @BindView(R.id.business_recycler_view) RecyclerView recyclerView; // Declare RecyclerView
-    @BindView(R.id.business_swipe_container) SwipeRefreshLayout swipeRefreshLayout; // Declare the SwipeRefreshLayout
+    @BindView(R.id.business_recycler_view)
+    RecyclerView recyclerView; // Declare RecyclerView
+    @BindView(R.id.business_swipe_container)
+    SwipeRefreshLayout swipeRefreshLayout; // Declare the SwipeRefreshLayout
 
     //FOR DATA
     private Disposable disposable;
-
     // Declare list and Adapter
     private List<ArticleBusiness> articles;
     private ArticleBusinessAdapter adapter;
@@ -110,16 +111,14 @@ public class BusinessFragment extends Fragment {
     // -------------------
 
     private void executeHttpRequestWithRetrofit(){
-        Log.i("TAG", "executeHttpRequestWithRetrofit: ");
         // Execute the stream subscribing to Observable defined inside NewsStreams
         this.disposable = NewsStreams
-                .streamFetchArticleBusiness("news/v3/content/nyt/sports.json?api-key=ff58457c72574ee094c10a7b22f5ebc7&limit=20")
+                .streamFetchArticleBusiness("topstories/v2/business.json?api-key=ff58457c72574ee094c10a7b22f5ebc7")
                 .subscribeWith(new DisposableObserver<ArticleCompositionBusiness>()
                 {
                     @Override
                     public void onNext(ArticleCompositionBusiness articleComposition) {
                         // Update UI with list of articles
-                        Log.i("TAG", "onNext: ");
                         updateUI(articleComposition);
                     }
 
@@ -129,9 +128,7 @@ public class BusinessFragment extends Fragment {
                     }
 
                     @Override
-                    public void onComplete() {
-                        Log.i("TAG", "onComplete: ");
-                    }
+                    public void onComplete() { }
                 });
     }
 

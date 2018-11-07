@@ -34,8 +34,10 @@ public class SearchFragment extends Fragment {
     }
 
     // FOR DESIGN
-    @BindView(R.id.search_and_display_recycler_view) RecyclerView recyclerView; // Declare RecyclerView
-    @BindView(R.id.search_and_display_swipe_container) SwipeRefreshLayout swipeRefreshLayout; // Declare the SwipeRefreshLayout
+    @BindView(R.id.search_recycler_view)
+    RecyclerView recyclerView; // Declare RecyclerView
+    @BindView(R.id.search_swipe_container)
+    SwipeRefreshLayout swipeRefreshLayout; // Declare the SwipeRefreshLayout
 
     //FOR DATA
     private Disposable disposable;
@@ -43,8 +45,7 @@ public class SearchFragment extends Fragment {
     private List<ArticleSearch> articles;
     private ArticleSearchAdapter adapter;
 
-    public SearchFragment() {
-    }
+    public SearchFragment() { }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -113,22 +114,25 @@ public class SearchFragment extends Fragment {
     private void executeHttpRequestWithRetrofit(){
         // Execute the stream subscribing to Observable defined inside NewsStreams
         this.disposable = NewsStreams
-                .streamFetchArticleSearch("search/v2/articlesearch.json?api-key=ff58457c72574ee094c10a7b22f5ebc7&q=soccer&fq=news_desk:(\"sports\")&begin_date=20181107")
+                .streamFetchArticleSearch("search/v2/articlesearch.json?api-key=ff58457c72574ee094c10a7b22f5ebc7&q=soccer&fq=news_desk:(\"sports\")&begin_date=20181101")
                 .subscribeWith(new DisposableObserver<ArticleCompositionSearch>()
                 {
                     @Override
                     public void onNext(ArticleCompositionSearch articleComposition) {
                         // Update UI with list of articles
+                        Log.i("TAG", "onNext: ");
                         updateUI(articleComposition);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("Search : ","On Error"+Log.getStackTraceString(e));
+                        Log.i("Business : ","On Error"+Log.getStackTraceString(e));
                     }
 
                     @Override
-                    public void onComplete() { }
+                    public void onComplete() {
+                        Log.i("TAG", "onComplete: ");
+                    }
                 });
     }
 
@@ -141,9 +145,9 @@ public class SearchFragment extends Fragment {
     // -------------------
 
     private void updateUI(ArticleCompositionSearch articleComposition){
-        swipeRefreshLayout.setRefreshing(false);
         articles.clear();
         articles.addAll(articleComposition.getResponse().getDocs());
         adapter.notifyDataSetChanged();
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

@@ -1,9 +1,8 @@
 package com.example.android.mynews.Models.BusinessModels;
 
-import android.util.Log;
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import java.util.List;
 
 public class ArticleCompositionBusiness {
     @SerializedName("status")
@@ -12,6 +11,12 @@ public class ArticleCompositionBusiness {
     @SerializedName("copyright")
     @Expose
     private String copyright;
+    @SerializedName("section")
+    @Expose
+    private String section;
+    @SerializedName("last_updated")
+    @Expose
+    private String lastUpdated;
     @SerializedName("num_results")
     @Expose
     private Integer numResults;
@@ -20,18 +25,11 @@ public class ArticleCompositionBusiness {
     private List<ArticleBusiness> results = null;
 
     public List<ArticleBusiness> getResults() {
-        Log.i("TAG", "getResults: ");
         return results;
     }
 
     public void setResults(List<ArticleBusiness> results) {
-        Log.i("TAG", "setResults: ");
         this.results = results;
     }
 
-    public ArticleCompositionBusiness withResults(List<ArticleBusiness> results) {
-        Log.i("TAG", "withResults: ");
-        this.results = results;
-        return this;
-    }
 }
