@@ -6,31 +6,34 @@
     density="xxhdpi"
     format="10"
     plugin-version="3.2.1"
-    timestamp="1541575834545"
+    timestamp="1541586324300"
     token="160766550772614168"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="12487" />
+        duration="9533" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="948" />
+        duration="1050" />
     <task
         name="verifier"
-        duration="138" />
+        duration="155" />
 
     <artifact
         location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
         type="SPLIT" />
     <artifact
-        location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+        location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
         type="SPLIT" />
     <artifact
         location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
         type="SPLIT" />
     <artifact
         location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
@@ -57,24 +60,24 @@
         location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
         type="SPLIT" />
     <artifact
-        location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
-        type="SPLIT" />
-    <artifact
         location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
         type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1541575834545"
+        timestamp="1541586324300"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
@@ -99,9 +102,6 @@
             type="SPLIT" />
         <artifact
             location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Laurent\AndroidStudioProjects\MyNews\app\build\intermediates\instant-run-apk\debug\app-debug.apk"

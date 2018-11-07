@@ -110,14 +110,16 @@ public class BusinessFragment extends Fragment {
     // -------------------
 
     private void executeHttpRequestWithRetrofit(){
+        Log.i("TAG", "executeHttpRequestWithRetrofit: ");
         // Execute the stream subscribing to Observable defined inside NewsStreams
         this.disposable = NewsStreams
-                .streamFetchArticleBusiness("news/v3/content/nyt/Business.json?api-key=ff58457c72574ee094c10a7b22f5ebc7&limit=20")
+                .streamFetchArticleBusiness("news/v3/content/nyt/sports.json?api-key=ff58457c72574ee094c10a7b22f5ebc7&limit=20")
                 .subscribeWith(new DisposableObserver<ArticleCompositionBusiness>()
                 {
                     @Override
                     public void onNext(ArticleCompositionBusiness articleComposition) {
                         // Update UI with list of articles
+                        Log.i("TAG", "onNext: ");
                         updateUI(articleComposition);
                     }
 
@@ -127,7 +129,9 @@ public class BusinessFragment extends Fragment {
                     }
 
                     @Override
-                    public void onComplete() { }
+                    public void onComplete() {
+                        Log.i("TAG", "onComplete: ");
+                    }
                 });
     }
 

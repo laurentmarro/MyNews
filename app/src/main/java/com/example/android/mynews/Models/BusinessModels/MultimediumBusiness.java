@@ -38,4 +38,3 @@ public class MultimediumBusiness {
         this.url = url;
     }
 }
-

@@ -24,7 +24,6 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.android.mynews.R;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

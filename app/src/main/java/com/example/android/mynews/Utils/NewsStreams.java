@@ -1,7 +1,10 @@
 package com.example.android.mynews.Utils;
 
+import android.util.Log;
+
 import com.example.android.mynews.Models.BusinessModels.ArticleCompositionBusiness;
 import com.example.android.mynews.Models.MostPopularModels.ArticleCompositionMostPopular;
+import com.example.android.mynews.Models.SearchModels.ArticleCompositionSearch;
 import com.example.android.mynews.Models.TopStoriesModels.ArticleCompositionTopStories;
 import java.util.concurrent.TimeUnit;
 import io.reactivex.Observable;
@@ -26,6 +29,7 @@ public class NewsStreams {
     }
 
     public static Observable<ArticleCompositionBusiness> streamFetchArticleBusiness(String businessfragment){
+        Log.i("TAG", "streamFetchArticleBusiness: ");
         NewsService newsService = NewsService.retrofit.create(NewsService.class);
         return newsService.getDataBusiness(businessfragment)
                 .subscribeOn(Schedulers.io())
@@ -33,4 +37,11 @@ public class NewsStreams {
                 .timeout(10, TimeUnit.SECONDS);
     }
 
+    public static Observable<ArticleCompositionSearch> streamFetchArticleSearch(String searchfragment){
+        NewsService newsService = NewsService.retrofit.create(NewsService.class);
+        return newsService.getDataSearch(searchfragment)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(10, TimeUnit.SECONDS);
+    }
 }
