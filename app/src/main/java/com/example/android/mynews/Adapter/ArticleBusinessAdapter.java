@@ -37,7 +37,7 @@ public class ArticleBusinessAdapter extends RecyclerView.Adapter<ArticleBusiness
     // UPDATE VIEW HOLDER
     @Override
     public void onBindViewHolder(@NonNull ArticleBusinessViewHolder viewHolder, int position) {
-            viewHolder.updateWithArticles(this.articles.get(position),this.glide);
+        viewHolder.updateWithArticles(this.articles.get(position), this.glide);
     }
 
     // RETURN THE TOTAL COUNT OF ITEMS IN THE LIST
@@ -46,7 +46,7 @@ public class ArticleBusinessAdapter extends RecyclerView.Adapter<ArticleBusiness
         return this.articles.size();
     }
 
-    public ArticleBusiness getArticle(int position){
+    public ArticleBusiness getArticle(int position) {
         return this.articles.get(position);
     }
 }

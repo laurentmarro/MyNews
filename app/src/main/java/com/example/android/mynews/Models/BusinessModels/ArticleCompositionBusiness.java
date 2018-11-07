@@ -1,8 +1,8 @@
 package com.example.android.mynews.Models.BusinessModels;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import java.util.List;
 
 public class ArticleCompositionBusiness {
     @SerializedName("status")
@@ -18,30 +18,6 @@ public class ArticleCompositionBusiness {
     @Expose
     private List<ArticleBusiness> results = null;
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getCopyright() {
-        return copyright;
-    }
-
-    public void setCopyright(String copyright) {
-        this.copyright = copyright;
-    }
-
-    public Integer getNumResults() {
-        return numResults;
-    }
-
-    public void setNumResults(Integer numResults) {
-        this.numResults = numResults;
-    }
-
     public List<ArticleBusiness> getResults() {
         return results;
     }
@@ -50,4 +26,8 @@ public class ArticleCompositionBusiness {
         this.results = results;
     }
 
+    public ArticleCompositionBusiness withResults(List<ArticleBusiness> results) {
+        this.results = results;
+        return this;
+    }
 }

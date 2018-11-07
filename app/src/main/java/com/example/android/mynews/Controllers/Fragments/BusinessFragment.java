@@ -21,7 +21,6 @@ import com.example.android.mynews.Utils.ItemClickSupport;
 import com.example.android.mynews.Utils.NewsStreams;
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.disposables.Disposable;
@@ -34,19 +33,17 @@ public class BusinessFragment extends Fragment {
     }
 
     // FOR DESIGN
-    @BindView(R.id.business_recycler_view)
-    RecyclerView recyclerView; // Declare RecyclerView
-    @BindView(R.id.business_swipe_container)
-    SwipeRefreshLayout swipeRefreshLayout; // Declare the SwipeRefreshLayout
+    @BindView(R.id.business_recycler_view) RecyclerView recyclerView; // Declare RecyclerView
+    @BindView(R.id.business_swipe_container) SwipeRefreshLayout swipeRefreshLayout; // Declare the SwipeRefreshLayout
 
     //FOR DATA
     private Disposable disposable;
+
     // Declare list and Adapter
     private List<ArticleBusiness> articles;
     private ArticleBusinessAdapter adapter;
 
-    public BusinessFragment() {
-    }
+    public BusinessFragment() { }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -71,7 +68,6 @@ public class BusinessFragment extends Fragment {
 
     // Configure item click on RecyclerView
     private void configureOnClickRecyclerView(){
-        Log.i("TAG", "configureOnClickRecyclerView: ");
         ItemClickSupport.addTo(recyclerView, R.layout.list_article)
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
                     @Override
@@ -90,7 +86,6 @@ public class BusinessFragment extends Fragment {
 
     // Configure RecyclerView, Adapter, LayoutManager & glue it together
     private void configureRecyclerView(){
-        Log.i("TAG", "configureRecyclerView: ");
         // Reset lists
         this.articles = new ArrayList<>();
         // Create adapter passing the list of articles
@@ -102,7 +97,6 @@ public class BusinessFragment extends Fragment {
     }
 
     private void configureSwipeRefreshLayout(){
-        Log.i("TAG", "configureSwipeRefreshLayout: ");
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -116,15 +110,13 @@ public class BusinessFragment extends Fragment {
     // -------------------
 
     private void executeHttpRequestWithRetrofit(){
-        Log.i("TAG", "executeHttpRequestWithRetrofit: ");
         // Execute the stream subscribing to Observable defined inside NewsStreams
         this.disposable = NewsStreams
-                .streamFetchArticleBusiness("news/v3/content/all/business.json?api-key=ff58457c72574ee094c10a7b22f5ebc7&limit=20")
+                .streamFetchArticleBusiness("news/v3/content/nyt/Business.json?api-key=ff58457c72574ee094c10a7b22f5ebc7&limit=20")
                 .subscribeWith(new DisposableObserver<ArticleCompositionBusiness>()
                 {
                     @Override
                     public void onNext(ArticleCompositionBusiness articleComposition) {
-                        Log.i("TAG", "onNext: ");
                         // Update UI with list of articles
                         updateUI(articleComposition);
                     }
@@ -135,12 +127,9 @@ public class BusinessFragment extends Fragment {
                     }
 
                     @Override
-                    public void onComplete() {
-                        Log.i("TAG", "Complete ");
-                    }
+                    public void onComplete() { }
                 });
     }
-
 
     private void disposeWhenDestroy(){
         if (this.disposable != null && !this.disposable.isDisposed()) this.disposable.dispose();

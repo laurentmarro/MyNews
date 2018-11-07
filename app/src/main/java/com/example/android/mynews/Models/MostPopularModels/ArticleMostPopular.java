@@ -56,22 +56,6 @@ public class ArticleMostPopular {
         this.url = url;
     }
 
-    public String getCountType() {
-        return countType;
-    }
-
-    public void setCountType(String countType) {
-        this.countType = countType;
-    }
-
-    public Object getColumn() {
-        return column;
-    }
-
-    public void setColumn(Object column) {
-        this.column = column;
-    }
-
     public String getSection() {
         return section;
     }
@@ -80,21 +64,6 @@ public class ArticleMostPopular {
         this.section = section;
     }
 
-    public String getByline() {
-        return byline;
-    }
-
-    public void setByline(String byline) {
-        this.byline = byline;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public String getAbstract() {
         return _abstract;
@@ -106,50 +75,6 @@ public class ArticleMostPopular {
 
     public String getPublishedDate() {
         return publishedDate;
-    }
-
-    public void setPublishedDate(String publishedDate) {
-        this.publishedDate = publishedDate;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public List<String> getDesFacet() {
-        return desFacet;
-    }
-
-    public void setDesFacet(List<String> desFacet) {
-        this.desFacet = desFacet;
-    }
-
-    public String getOrgFacet() {
-        return orgFacet;
-    }
-
-    public void setOrgFacet(String orgFacet) {
-        this.orgFacet = orgFacet;
-    }
-
-    public List<String> getPerFacet() {
-        return perFacet;
-    }
-
-    public void setPerFacet(List<String> perFacet) {
-        this.perFacet = perFacet;
-    }
-
-    public String getGeoFacet() {
-        return geoFacet;
-    }
-
-    public void setGeoFacet(String geoFacet) {
-        this.geoFacet = geoFacet;
     }
 
     public List<MediumMostPopular> getMedia() {
