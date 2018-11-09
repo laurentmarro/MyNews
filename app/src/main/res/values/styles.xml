@@ -11,7 +11,7 @@
     <!-- TOOLBAR THEME -->
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <!-- Color of the title text in the Toolbar -->
-        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorAccent2</item>
     </style>
 
     <!-- TOOLBAR TITLE THEME -->
@@ -31,12 +31,6 @@
     </style>
 
     <style name="DialogTheme" parent="Theme.AppCompat.Light">
-        <item name="colorAccent">@color/colorPrimaryDark</item>
-    </style>
-
-    <style name="datepicker" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorPrimary">@color/colorAccent</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorPrimaryDark</item>
     </style>
 

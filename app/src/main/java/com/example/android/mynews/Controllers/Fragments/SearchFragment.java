@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.example.android.mynews.Adapter.ArticleSearchAdapter;
 import com.example.android.mynews.Controllers.Activities.ArticleActivity;
@@ -114,24 +116,24 @@ public class SearchFragment extends Fragment {
     private void executeHttpRequestWithRetrofit(){
         // Execute the stream subscribing to Observable defined inside NewsStreams
         this.disposable = NewsStreams
-                .streamFetchArticleSearch("search/v2/articlesearch.json?api-key=ff58457c72574ee094c10a7b22f5ebc7&q=soccer&fq=news_desk:(\"sports\")&begin_date=20181101")
+                .streamFetchArticleSearch("search/v2/articlesearch.json?api-key=ff58457c72574ee094c10a7b22f5ebc7&q=cannes&fq=news_desk:(\"sports\")&begin_date=20181109")
                 .subscribeWith(new DisposableObserver<ArticleCompositionSearch>()
                 {
                     @Override
                     public void onNext(ArticleCompositionSearch articleComposition) {
                         // Update UI with list of articles
-                        Log.i("TAG", "onNext: ");
                         updateUI(articleComposition);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("Business : ","On Error"+Log.getStackTraceString(e));
+                        Log.i("Search Fragment : ","On Error"+Log.getStackTraceString(e));
                     }
 
                     @Override
                     public void onComplete() {
-                        Log.i("TAG", "onComplete: ");
+                        if(articles.size()==0) {
+                            Toast.makeText(getActivity(), getString(R.string.sorry_search), 3*Toast.LENGTH_LONG).show();}
                     }
                 });
     }

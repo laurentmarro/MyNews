@@ -34,7 +34,7 @@ public class DisplayNotificationsActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, 8);
-        calendar.set(Calendar.MINUTE, 30);
+        calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND,0);
         // Set interval
         assert alarmManager != null;

@@ -33,13 +33,13 @@ public class ArticleSearchViewHolder extends RecyclerView.ViewHolder {
         String description_text;
         String url_image;
 
-        Log.i("TAG", "updateWithArticles");
-
         // Section and SubSection
-        if (article.getSectionName().equals("")) {
-            sectionAndSubsection = "";
-        } else sectionAndSubsection = article.getSectionName();
-        Log.i("TAG - Section ", ""+sectionAndSubsection);
+        if (article.getSectionName() == null) {
+            sectionAndSubsection = "Unknown";}
+            else if (article.getSectionName().equals("")) {
+            sectionAndSubsection = "Unknown";}
+            else {sectionAndSubsection = article.getSectionName();
+        }
 
         @SuppressLint("SimpleDateFormat") SimpleDateFormat sourceFormat = new SimpleDateFormat("yyyy-mm-dd");
         @SuppressLint("SimpleDateFormat") SimpleDateFormat DesiredFormat = new SimpleDateFormat("dd/mm/yyyy");
@@ -50,21 +50,18 @@ public class ArticleSearchViewHolder extends RecyclerView.ViewHolder {
         } catch (ParseException e) {
             formattedDate = "Unknown";
         }
-        Log.i("TAG - Date ", ""+formattedDate);
 
         // Description
         if (article.getSnippet().equals("")){
             description_text = "Unwritten";
         } else description_text = article.getSnippet();
 
-        Log.i("TAG - Description ", ""+description_text);
         // Image
         try {
-            url_image = article.getMultimedia().get(2).getUrl();
+            url_image = "https://static01.nyt.com/"+article.getMultimedia().get(2).getUrl();
         } catch (Exception e) {
             url_image = "https://upload.wikimedia.org/wikipedia/en/d/d3/No-picture.jpg";
         }
-        Log.i("TAG", ""+url_image);
 
         // Display
         this.article_date.setText(formattedDate);

@@ -7,7 +7,7 @@ import com.example.android.mynews.R;
 
 public class SearchAndDisplayActivity extends AppCompatActivity {
 
-    private SearchFragment searchFragment;
+    SearchFragment searchFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

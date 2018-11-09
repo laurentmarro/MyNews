@@ -71,7 +71,7 @@ public class SearchActivity extends AppCompatActivity {
         final EditText date1 = findViewById(R.id.datepickerbegin);
         final EditText date2 = findViewById(R.id.datepickerend);
         final Button search_button = findViewById(R.id.searchButton);
-        EditText queryInput = findViewById(R.id.activity_query_input);
+        final EditText queryInput = findViewById(R.id.activity_query_input);
         CheckBox checkBox_Arts = findViewById(R.id.arts_CheckBox);
         CheckBox checkBox_Business = findViewById(R.id.business_CheckBox);
         CheckBox checkBox_Entrepreneurs = findViewById(R.id.entrepreneurs_CheckBox);
@@ -106,7 +106,6 @@ public class SearchActivity extends AppCompatActivity {
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         SearchActivity.this,
-                        R.style.DialogTheme,
                         beginDateSetListener,
                         year,month,day);
 
@@ -153,7 +152,6 @@ public class SearchActivity extends AppCompatActivity {
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         SearchActivity.this,
-                        R.style.DialogTheme,
                         endDateSetListener,
                         year,month,day);
 
@@ -198,7 +196,6 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
                 if (s.toString().length() > 1) {
                     editor.putBoolean("QUERYSEARCHPOSITION", true);
                     editor.putString("QUERYSEARCH", String.valueOf(s));
@@ -208,6 +205,7 @@ public class SearchActivity extends AppCompatActivity {
                     editor.apply();
                 }
             }
+
             @Override
             public void afterTextChanged(Editable s) {
             }
@@ -333,6 +331,7 @@ public class SearchActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         String sentence = preferences.getString("QUERYSEARCH", "");
         editor.putBoolean("QUERY_INPUT", true);
+        editor.putBoolean("SWITCH", true);
         editor.putString("SENTENCE", sentence);
 
         for (int k = 0; k < 6; k++) {
