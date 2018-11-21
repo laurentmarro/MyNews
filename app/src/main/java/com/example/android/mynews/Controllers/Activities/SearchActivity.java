@@ -23,6 +23,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.example.android.mynews.R;
 import java.text.SimpleDateFormat;
@@ -43,7 +44,10 @@ public class SearchActivity extends AppCompatActivity {
     private List<String> searchCategoriesList = new ArrayList<>();
     private final List<String> categoriesList = new ArrayList<>();
     private DatePickerDialog.OnDateSetListener beginDateSetListener, endDateSetListener;
+    private String query="", day2, month1, endDate ="01/11/2018", day1, beginDate="01/11/2018", today;
+    private int year, month, day, numberOfTrue=0;
 
+    @SuppressLint("SimpleDateFormat")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,8 +72,8 @@ public class SearchActivity extends AppCompatActivity {
 
         // Widgets initialization
 
-        final EditText date1 = findViewById(R.id.datepickerbegin);
-        final EditText date2 = findViewById(R.id.datepickerend);
+        final TextView date1 = findViewById(R.id.datepickerbegin);
+        final TextView date2 = findViewById(R.id.datepickerend);
         final Button search_button = findViewById(R.id.searchButton);
         final EditText queryInput = findViewById(R.id.activity_query_input);
         CheckBox checkBox_Arts = findViewById(R.id.arts_CheckBox);
@@ -90,7 +94,7 @@ public class SearchActivity extends AppCompatActivity {
 
         // Today
         Date date = new Date();
-        @SuppressLint("SimpleDateFormat") final String today = new SimpleDateFormat("dd/MM/yyyy").format(date);
+        today = new SimpleDateFormat("dd/MM/yyyy").format(date);
 
         // Listeners
 
@@ -100,9 +104,9 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         SearchActivity.this,
@@ -118,7 +122,6 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
                 month = month +1;
-                String day1, month1, beginDate;
                 if (month<10) {
                     month1 = "0";
                 } else month1 ="";
@@ -130,13 +133,10 @@ public class SearchActivity extends AppCompatActivity {
                 beginDate = day1+dayOfMonth+"/"+month1+month+"/"+year;
 
                 if (beginDate.compareTo(today)>0) {
-                    Log.i("Information ", "We can't read in the future ! We still in the present");
+                    Log.i("Information ", getString(R.string.present));
                     beginDate = today;
                 }
-
                 date1.setText(beginDate);
-                editor.putString("BEGINDATE", String.valueOf(beginDate));
-                editor.apply();
             }
         };
 
@@ -146,9 +146,9 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                year = calendar.get(Calendar.YEAR);
+                month = calendar.get(Calendar.MONTH);
+                day = calendar.get(Calendar.DAY_OF_MONTH);
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         SearchActivity.this,
@@ -164,16 +164,16 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker2, int year2, int month2, int dayOfMonth2) {
                 month2 = month2 +1;
-                String day1, month1, endDate;
+
                 if (month2<10) {
                     month1 = "0";
                 } else month1 ="";
 
                 if (dayOfMonth2<10) {
-                    day1 = "0";
-                } else day1 ="";
+                    day2 = "0";
+                } else day2 ="";
 
-                endDate = day1+dayOfMonth2+"/"+month1+month2+"/"+year2;
+                endDate = day2+dayOfMonth2+"/"+month1+month2+"/"+year2;
 
                 if (endDate.compareTo(today)>0) {
                     Log.i("Information ", getString(R.string.present));
@@ -181,8 +181,6 @@ public class SearchActivity extends AppCompatActivity {
                 }
 
                 date2.setText(endDate);
-                editor.putString("ENDDATE", String.valueOf(endDate));
-                editor.apply();
             }
         };
 
@@ -196,14 +194,7 @@ public class SearchActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.toString().length() > 1) {
-                    editor.putBoolean("QUERYSEARCHPOSITION", true);
-                    editor.putString("QUERYSEARCH", String.valueOf(s));
-                    editor.apply();
-                } else {
-                    editor.putBoolean("QUERYSEARCHPOSITION", false);
-                    editor.apply();
-                }
+                query = s.toString();
             }
 
             @Override
@@ -213,19 +204,23 @@ public class SearchActivity extends AppCompatActivity {
 
         // Checkboxes
         for (int i = 0; i < 6; i++) {
-            final String CHECKBOXSEARCHNAME = searchCategoriesList.get(i);
 
+            final int finalI = i;
             checkBoxList.get(i).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                     if (isChecked) {
-                        editor.putBoolean(CHECKBOXSEARCHNAME, true);
+                        editor.putBoolean(searchCategoriesList.get(finalI), true);
+                        numberOfTrue +=1;
+                        editor.apply();
+
                     } else {
-                        editor.putBoolean(CHECKBOXSEARCHNAME, false);
+                        editor.putBoolean(searchCategoriesList.get(finalI), false);
+                        numberOfTrue -=1;
+                        editor.apply();
                     }
                 }
             });
-            editor.apply();
         }
 
         // Search Button
@@ -241,33 +236,15 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void conditionsForSearch() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String beginDate = preferences.getString("BEGINDATE",getString(R.string.date));
-        String endDate = preferences.getString("ENDDATE",getString(R.string.date));
-        Boolean query = preferences.getBoolean("QUERYSEARCHPOSITION", false);
-        int numberOfTrue=0;
-
-        // At least one checkboxes checked
-        for (int k = 0; k < 6; k++) {
-            if (preferences.getBoolean(searchCategoriesList.get(k), false)) {
-                numberOfTrue++;
+        if (query.length()>1) {
+            if (numberOfTrue>0) {
+                if (endDate.compareTo(beginDate)>=0) {
+                    search = true;
+                }
             }
         }
-
-        // Query True
-        if (query && numberOfTrue>0) {
-            // Dates in chronological order
-            assert endDate != null;
-            assert beginDate != null;
-            if (endDate.compareTo(beginDate) >= 0) {
-                search = true;
-            } else {
-                Log.i("Information", getString(R.string.endatemustbeafterorsame));
-                search = false;
-            }
-        } else {
+        if (!search) {
             Log.i("Information", getString(R.string.informationnosearch));
-            search = false;
         }
     }
 
@@ -315,13 +292,23 @@ public class SearchActivity extends AppCompatActivity {
         // Convert the dps to pixels, based on density scale
         final float scale = getResources().getDisplayMetrics().density;
         int width = (int) (200 * scale + 0.5f);
-        int height = (int) (200 * scale + 0.5f); // because it's a square
+        int height = (int) (200 * scale + 0.5f);
 
         window.setLayout(width, height);
     }
 
     private void executeSearch() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        // define origin
+        preferences.edit().putString("ORIGINE", getString(R.string.search)).apply();
+
         // Launch new activity to search and display results
+        editor.putString("SENTENCE", query);
+        editor.putString("BEGINDATE", beginDate);
+        editor.putString("ENDDATE",endDate);
+        editor.apply();
         Intent intent = new Intent(SearchActivity.this, SearchAndDisplayActivity.class);
         startActivity(intent);
     }
@@ -329,15 +316,13 @@ public class SearchActivity extends AppCompatActivity {
     private void updateNotifications() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-        String sentence = preferences.getString("QUERYSEARCH", "");
+        // Checkboxes
+        for (int j = 0; j < 6; j++) {
+            editor.putBoolean(categoriesList.get(j),preferences.getBoolean(searchCategoriesList.get(j), false));
+        }
         editor.putBoolean("QUERY_INPUT", true);
         editor.putBoolean("SWITCH", true);
-        editor.putString("SENTENCE", sentence);
-
-        for (int k = 0; k < 6; k++) {
-            Boolean checkboxPosition = preferences.getBoolean(searchCategoriesList.get(k), false);
-            editor.putBoolean(categoriesList.get(k), checkboxPosition);
-        }
+        editor.putString("SENTENCE", query);
         editor.apply();
     }
 

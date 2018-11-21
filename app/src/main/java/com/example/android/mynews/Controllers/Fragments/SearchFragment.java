@@ -1,21 +1,28 @@
 package com.example.android.mynews.Controllers.Fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
+import android.view.Window;
+import android.widget.Button;
 import com.bumptech.glide.Glide;
 import com.example.android.mynews.Adapter.ArticleSearchAdapter;
 import com.example.android.mynews.Controllers.Activities.ArticleActivity;
+import com.example.android.mynews.Controllers.Activities.SearchActivity;
 import com.example.android.mynews.Models.SearchModels.ArticleCompositionSearch;
 import com.example.android.mynews.Models.SearchModels.ArticleSearch;
 import com.example.android.mynews.R;
@@ -29,6 +36,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
 public class SearchFragment extends Fragment {
+    SharedPreferences sharedPreferences;
 
     @NonNull
     public static SearchFragment newInstance() {
@@ -46,6 +54,8 @@ public class SearchFragment extends Fragment {
     // Declare list and Adapter
     private List<ArticleSearch> articles;
     private ArticleSearchAdapter adapter;
+    private String origin;
+    String urlToShow;
 
     public SearchFragment() { }
 
@@ -113,12 +123,24 @@ public class SearchFragment extends Fragment {
     // HTTP (RxJAVA)
     // -------------------
 
-    private void executeHttpRequestWithRetrofit(){
+    private void executeHttpRequestWithRetrofit() {
+        // bring back URL
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        origin = preferences.getString("ORIGINE", getString(R.string.search));
+        Log.i("TAG", origin);
+        Log.i("TAG", ""+getString(R.string.notifications));
+        Log.i("TAG", ""+getString(R.string.search));
+
+        if (origin.equals(getString(R.string.search))) {
+            urlToShow = preferences.getString("URLTOSEARCH", "");
+        } else {
+            urlToShow = preferences.getString("URLTOSHOW", "");
+        }
+
         // Execute the stream subscribing to Observable defined inside NewsStreams
         this.disposable = NewsStreams
-                .streamFetchArticleSearch("search/v2/articlesearch.json?api-key=ff58457c72574ee094c10a7b22f5ebc7&q=cannes&fq=news_desk:(\"sports\")&begin_date=20181109")
-                .subscribeWith(new DisposableObserver<ArticleCompositionSearch>()
-                {
+                .streamFetchArticleSearch(urlToShow)
+                .subscribeWith(new DisposableObserver<ArticleCompositionSearch>() {
                     @Override
                     public void onNext(ArticleCompositionSearch articleComposition) {
                         // Update UI with list of articles
@@ -127,13 +149,18 @@ public class SearchFragment extends Fragment {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("Search Fragment : ","On Error"+Log.getStackTraceString(e));
+                        Log.i("Search Fragment : ", "On Error" + Log.getStackTraceString(e));
                     }
 
                     @Override
                     public void onComplete() {
-                        if(articles.size()==0) {
-                            Toast.makeText(getActivity(), getString(R.string.sorry_search), 3*Toast.LENGTH_LONG).show();}
+                        if (articles.size() == 0 && (origin.equals(getString(R.string.notifications)))) {
+                            sharedPreferences.edit().putInt("NewArticle",articles.size()).apply();
+                        }
+
+                        else if (articles.size() == 0 && (origin.equals(getString(R.string.search)))) {
+                            popUp();
+                        }
                     }
                 });
     }
@@ -151,5 +178,37 @@ public class SearchFragment extends Fragment {
         articles.addAll(articleComposition.getResponse().getDocs());
         adapter.notifyDataSetChanged();
         swipeRefreshLayout.setRefreshing(false);
+    }
+
+    // -------------------
+    // POP UP
+    // -------------------
+
+    private void popUp() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(R.string.sorry_search);
+        builder.setCancelable(false);
+        builder.setNeutralButton(
+                getString(R.string.ok),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        Intent intent = new Intent(getActivity(), SearchActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+        Button neutralButton = alert.getButton(DialogInterface.BUTTON_NEUTRAL);
+        //Set negative button text color
+        neutralButton.setTextColor(Color.MAGENTA);
+        alert.getWindow();
+
+        // Setting Dialog View
+        Window window = alert.getWindow();
+        assert window != null;
+        window.setGravity(Gravity.CENTER);
+        alert.show();
     }
 }

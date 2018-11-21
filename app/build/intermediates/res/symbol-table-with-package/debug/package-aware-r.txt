@@ -1068,6 +1068,7 @@ id action_mode_close_button
 id action_text
 id actions
 id activity_chooser_view_content
+id activity_display_notifications_frame_layout
 id activity_main
 id activity_main_layout
 id activity_main_params
@@ -1450,9 +1451,9 @@ string enable_notifications_once_per_day
 string end_date
 string endatemustbeafterorsame
 string entrepreneurs
+string errornotification
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
-string hello_blank_fragment
 string help
 string help_text
 string hide_bottom_view_on_scroll_behavior
@@ -1466,6 +1467,7 @@ string notification_title
 string notifications
 string notifications_off
 string notificationsupdated
+string ok
 string parameters
 string password_toggle_content_description
 string path_password_eye
@@ -1478,6 +1480,7 @@ string query_need_something
 string search
 string search_menu_title
 string search_query_term
+string searchresult_s
 string sectionandsubsection
 string sorry_search
 string sports

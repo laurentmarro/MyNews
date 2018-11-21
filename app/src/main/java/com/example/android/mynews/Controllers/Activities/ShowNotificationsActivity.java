@@ -1,31 +1,44 @@
 package com.example.android.mynews.Controllers.Activities;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.example.android.mynews.Controllers.Fragments.SearchFragment;
 import com.example.android.mynews.R;
 
 public class ShowNotificationsActivity extends AppCompatActivity {
 
+    SearchFragment searchFragment;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Changer le layout
         setContentView(R.layout.activity_display_notifications);
-        this.configureToolbar();
+        this.defineOrigin();
+        this.configureAndShowNotifications();
     }
 
-    private void configureToolbar() {
-        //Get the toolbar (Serialise)
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        //Set the toolbar
-        setSupportActionBar(toolbar);
-        // Get a support ActionBar corresponding to this toolbar
-        ActionBar actionBar = getSupportActionBar();
-        // Enable the Up button
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+    // -------------------
+    // CONFIGURATION
+    // -------------------
+
+    private void configureAndShowNotifications(){
+
+        searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentById(R.id.activity_display_notifications_frame_layout);
+
+        if (searchFragment == null) {
+            searchFragment = new SearchFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.activity_display_notifications_frame_layout, searchFragment)
+                    .commit();
         }
+    }
+
+    private void defineOrigin() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("ORIGINE", String.valueOf(R.string.notifications));
+        editor.apply();
     }
 }

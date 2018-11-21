@@ -22,7 +22,7 @@
     <string name="help_text">This application have been done and tested for API 19 and more. However, if something wrong happens you can mail the author to : laurent.marro@outlook.fr</string>
     <string name="begin_date">Begin Date</string>
     <string name="end_date">End Date</string>
-    <string name="date">01/08/2018</string>
+    <string name="date">01/11/2018</string>
     <string name="articles_image">articles\'image</string>
     <string name="arts">Arts</string>
     <string name="notification_title">"new article(s) is (are) on line"</string>
@@ -42,8 +42,8 @@
     <string name="endatemustbeafterorsame">End Date must be after or the same than Begin Date</string>
     <string name="informationnosearch">You need to ask something and to click at least a box to start the search</string>
     <string name="present">We can\'t read in the future ! We still in the present</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sorry_search">Sorry, we don\'t have any article for your search</string>
+    <string name="ok">OK</string>
+    <string name="errornotification">There is an error in the notifications screen. Click OK to go back</string>
+    <string name="searchresult_s">SearchResult(s)</string>
 </resources>

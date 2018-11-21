@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Window;
 import android.widget.Button;
@@ -34,13 +33,15 @@ public class NotificationsActivity extends AppCompatActivity {
 
     private final List<CheckBox> checkBoxList = new ArrayList<>();
     private final List<String> categoriesList = new ArrayList<>();
-    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
-        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        final SharedPreferences.Editor editor = preferences.edit();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
+
+        this.showAlertDialogButtonClicked();
         this.configureToolbar();
 
         // Widgets initialization
@@ -75,7 +76,7 @@ public class NotificationsActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                SharedPreferences.Editor editor = preferences.edit();
+
                 if (s.toString().length() > 1) {
                     editor.putBoolean("QUERY_INPUT", true);
                     editor.putString("SENTENCE", String.valueOf(s));
@@ -95,7 +96,6 @@ public class NotificationsActivity extends AppCompatActivity {
         notifications_switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SharedPreferences.Editor editor = preferences.edit();
                 if (isChecked) {
                     editor.putBoolean("SWITCH", true);
                     editor.apply();
@@ -115,7 +115,6 @@ public class NotificationsActivity extends AppCompatActivity {
 
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                    SharedPreferences.Editor editor = preferences.edit();
                     if (isChecked) {
                         editor.putBoolean(CHECKBOX_NAME, true);
                         editor.apply();
@@ -131,6 +130,8 @@ public class NotificationsActivity extends AppCompatActivity {
     }
 
     private void updateWidgetDisplay() {
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         // QUERY_INPUT
         Boolean query = preferences.getBoolean("QUERY_INPUT", false);
@@ -153,7 +154,6 @@ public class NotificationsActivity extends AppCompatActivity {
         for (int j = 0; j < 6; j++) {
 
             Boolean checkboxes = preferences.getBoolean(categoriesList.get(j), false);
-
             if (checkboxes) {
                 checkBoxList.get(j).setChecked(true);
             } else {
@@ -163,38 +163,32 @@ public class NotificationsActivity extends AppCompatActivity {
     }
 
     private void conditionsForNotifications() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("READYTONOTIFY", false);
+        editor.apply();
         Boolean query = preferences.getBoolean("QUERY_INPUT", false);
         Boolean switch_button = preferences.getBoolean("SWITCH", false);
 
         if ((query) && (switch_button)) {
-            int k = 0;
-
-            while (!preferences.getBoolean(categoriesList.get(k), false)) {
-                k++;
-                if (k < 6) {
-                    this.showAlertDialogButtonClicked();
-                }
-                else {
-                    Log.i("Information ", getString(R.string.information_no_notification));
+            for (int i = 0; i < 5 ; i++) {
+                if(preferences.getBoolean(categoriesList.get(i), false))  {
+                    editor.putBoolean("READYTONOTIFY", true);
+                    editor.apply();
                 }
             }
-
-            this.showAlertDialogButtonClicked();
-        }
-        else {
-            Log.i("Information ", getString(R.string.information_no_notification));
-            this.showAlertDialogButtonClicked();
         }
     }
 
     public void showAlertDialogButtonClicked() {
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        final SharedPreferences.Editor editor = preferences.edit();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.warning);
         builder.setMessage(R.string.do_you_want_to_update);
         builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
-                SharedPreferences.Editor editor = preferences.edit();
                 editor.putBoolean("SWITCH", false);
                 Toast.makeText(getApplicationContext(), R.string.notifications_off,
                         Toast.LENGTH_LONG).show();
@@ -207,10 +201,20 @@ public class NotificationsActivity extends AppCompatActivity {
         builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent displayNotificationsActivity = new Intent(NotificationsActivity.this,
-                        DisplayNotificationsActivity.class);
-                startActivity(displayNotificationsActivity);
-                dialog.dismiss();
+                conditionsForNotifications();
+                if( preferences.getBoolean("READYTONOTIFY",false)) {
+                    Intent displayIntent = new Intent(NotificationsActivity.this,
+                            DisplayNotificationsActivity.class);
+                    startActivity(displayIntent);
+                    dialog.dismiss();
+                } else {
+                    editor.putBoolean("SWITCH", false);
+                    Toast.makeText(getApplicationContext(), R.string.notifications_off,
+                            Toast.LENGTH_LONG).show();
+                    editor.apply();
+                    updateWidgetDisplay();
+                    dialog.dismiss();
+                }
             }
         });
 
@@ -234,7 +238,7 @@ public class NotificationsActivity extends AppCompatActivity {
         // Convert the dps to pixels, based on density scale
         final float scale = getResources().getDisplayMetrics().density;
         int width = (int) (200 * scale + 0.5f);
-        int height = (int) (200 * scale + 0.5f); // because it's a square
+        int height = (int) (200 * scale + 0.5f);
 
         window.setLayout(width, height);
     }
