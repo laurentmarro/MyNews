@@ -3,7 +3,6 @@ package com.example.android.mynews.Controllers.Activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -14,12 +13,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
+import com.example.android.mynews.Controllers.Helpers.DisplayNotifications;
 import com.example.android.mynews.R;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,14 +32,15 @@ public class NotificationsActivity extends AppCompatActivity {
 
     private final List<CheckBox> checkBoxList = new ArrayList<>();
     private final List<String> categoriesList = new ArrayList<>();
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        final SharedPreferences.Editor editor = preferences.edit();
+        preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        editor = preferences.edit();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
-
         this.showAlertDialogButtonClicked();
         this.configureToolbar();
 
@@ -131,8 +131,6 @@ public class NotificationsActivity extends AppCompatActivity {
 
     private void updateWidgetDisplay() {
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
         // QUERY_INPUT
         Boolean query = preferences.getBoolean("QUERY_INPUT", false);
         String sentence = preferences.getString("SENTENCE", "");
@@ -163,8 +161,6 @@ public class NotificationsActivity extends AppCompatActivity {
     }
 
     private void conditionsForNotifications() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean("READYTONOTIFY", false);
         editor.apply();
         Boolean query = preferences.getBoolean("QUERY_INPUT", false);
@@ -181,8 +177,6 @@ public class NotificationsActivity extends AppCompatActivity {
     }
 
     public void showAlertDialogButtonClicked() {
-        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        final SharedPreferences.Editor editor = preferences.edit();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.warning);
         builder.setMessage(R.string.do_you_want_to_update);
@@ -193,6 +187,7 @@ public class NotificationsActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), R.string.notifications_off,
                         Toast.LENGTH_LONG).show();
                 editor.apply();
+
                 updateWidgetDisplay();
                 dialog.dismiss();
             }
@@ -204,7 +199,7 @@ public class NotificationsActivity extends AppCompatActivity {
                 conditionsForNotifications();
                 if( preferences.getBoolean("READYTONOTIFY",false)) {
                     Intent displayIntent = new Intent(NotificationsActivity.this,
-                            DisplayNotificationsActivity.class);
+                            DisplayNotifications.class);
                     startActivity(displayIntent);
                     dialog.dismiss();
                 } else {
@@ -220,13 +215,6 @@ public class NotificationsActivity extends AppCompatActivity {
 
         AlertDialog alert = builder.create();
         alert.show();
-        Button button = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
-        //Set negative button text color
-        button.setTextColor(Color.MAGENTA);
-        Button button1 = alert.getButton(DialogInterface.BUTTON_POSITIVE);
-        //Set positive button text color
-        button1.setTextColor(Color.MAGENTA);
-
         alert.getWindow();
 
         // Setting Dialog View
@@ -239,7 +227,6 @@ public class NotificationsActivity extends AppCompatActivity {
         final float scale = getResources().getDisplayMetrics().density;
         int width = (int) (200 * scale + 0.5f);
         int height = (int) (200 * scale + 0.5f);
-
         window.setLayout(width, height);
     }
 

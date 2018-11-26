@@ -6,7 +6,6 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
@@ -14,7 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -25,6 +23,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.android.mynews.Controllers.Helpers.SearchAndDisplay;
 import com.example.android.mynews.R;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,19 +40,20 @@ public class SearchActivity extends AppCompatActivity {
 
     private Boolean search = false;
     private List<CheckBox> checkBoxList = new ArrayList<>();
-    private List<String> searchCategoriesList = new ArrayList<>();
-    private final List<String> categoriesList = new ArrayList<>();
+    private List<String> searchCategoriesList = new ArrayList<>(),categoriesList = new ArrayList<>();
     private DatePickerDialog.OnDateSetListener beginDateSetListener, endDateSetListener;
-    private String query="", day2, month1, endDate ="01/11/2018", day1, beginDate="01/11/2018", today;
+    private String query="", day2, month1, day1, beginDate="01/11/2018", endDate = "01/11/2018", today;
     private int year, month, day, numberOfTrue=0;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
 
     @SuppressLint("SimpleDateFormat")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        final SharedPreferences.Editor editor = preferences.edit();
+        preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        editor = preferences.edit();
         this.configureToolbar();
 
         // Create categoriesList from enum
@@ -71,7 +71,6 @@ public class SearchActivity extends AppCompatActivity {
         editor.apply();
 
         // Widgets initialization
-
         final TextView date1 = findViewById(R.id.datepickerbegin);
         final TextView date2 = findViewById(R.id.datepickerend);
         final Button search_button = findViewById(R.id.searchButton);
@@ -84,7 +83,6 @@ public class SearchActivity extends AppCompatActivity {
         CheckBox checkBox_Travel = findViewById(R.id.travel_CheckBox);
 
         // checkBoxList
-
         checkBoxList.add(checkBox_Arts);
         checkBoxList.add(checkBox_Business);
         checkBoxList.add(checkBox_Entrepreneurs);
@@ -99,7 +97,6 @@ public class SearchActivity extends AppCompatActivity {
         // Listeners
 
         // First DateListener in EditText
-
         date1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,7 +130,7 @@ public class SearchActivity extends AppCompatActivity {
                 beginDate = day1+dayOfMonth+"/"+month1+month+"/"+year;
 
                 if (beginDate.compareTo(today)>0) {
-                    Log.i("Information ", getString(R.string.present));
+                    Toast.makeText(getApplicationContext(), R.string.present, Toast.LENGTH_LONG).show();
                     beginDate = today;
                 }
                 date1.setText(beginDate);
@@ -141,7 +138,6 @@ public class SearchActivity extends AppCompatActivity {
         };
 
         // Second DateListener in EditText
-
         date2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -176,7 +172,7 @@ public class SearchActivity extends AppCompatActivity {
                 endDate = day2+dayOfMonth2+"/"+month1+month2+"/"+year2;
 
                 if (endDate.compareTo(today)>0) {
-                    Log.i("Information ", getString(R.string.present));
+                    Toast.makeText(getApplicationContext(), R.string.present, Toast.LENGTH_LONG).show();
                     endDate = today;
                 }
 
@@ -185,7 +181,6 @@ public class SearchActivity extends AppCompatActivity {
         };
 
         // Third Edit Text : Sentence to search
-
         queryInput.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -244,7 +239,7 @@ public class SearchActivity extends AppCompatActivity {
             }
         }
         if (!search) {
-            Log.i("Information", getString(R.string.informationnosearch));
+            Toast.makeText(getApplicationContext(), R.string.informationnosearch, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -274,13 +269,6 @@ public class SearchActivity extends AppCompatActivity {
 
         AlertDialog alert = builder.create();
         alert.show();
-        Button negativeButton = alert.getButton(DialogInterface.BUTTON_NEGATIVE);
-        //Set negative button text color
-        negativeButton.setTextColor(Color.MAGENTA);
-        Button positiveButton = alert.getButton(DialogInterface.BUTTON_POSITIVE);
-        //Set positive button text color
-        positiveButton.setTextColor(Color.MAGENTA);
-
         alert.getWindow();
 
         // Setting Dialog View
@@ -309,13 +297,11 @@ public class SearchActivity extends AppCompatActivity {
         editor.putString("BEGINDATE", beginDate);
         editor.putString("ENDDATE",endDate);
         editor.apply();
-        Intent intent = new Intent(SearchActivity.this, SearchAndDisplayActivity.class);
+        Intent intent = new Intent(SearchActivity.this, SearchAndDisplay.class);
         startActivity(intent);
     }
 
     private void updateNotifications() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferences.edit();
         // Checkboxes
         for (int j = 0; j < 6; j++) {
             editor.putBoolean(categoriesList.get(j),preferences.getBoolean(searchCategoriesList.get(j), false));
@@ -326,7 +312,6 @@ public class SearchActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    // ToolBar
     private void configureToolbar() {
         //Get the toolbar (Serialise)
         Toolbar toolbar = findViewById(R.id.toolbar);

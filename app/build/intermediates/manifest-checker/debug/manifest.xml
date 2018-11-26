@@ -90,12 +90,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controllers.Activities.MainActivity" />
         </activity>
-        <activity android:name="com.example.android.mynews.Controllers.Activities.DisplayNotificationsActivity" />
-        <activity android:name="com.example.android.mynews.Controllers.Activities.ShowNotificationsActivity" />
+        <activity android:name="com.example.android.mynews.Controllers.Helpers.ShowNotifications" />
+        <activity android:name="com.example.android.mynews.Controllers.Helpers.SearchAndDisplay" />
+        <activity android:name="com.example.android.mynews.Controllers.Helpers.DisplayNotifications" />
 
-        <receiver android:name="com.example.android.mynews.Controllers.Activities.DisplayNotificationsActivity$AlarmReceiver" />
-
-        <activity android:name="com.example.android.mynews.Controllers.Activities.SearchAndDisplayActivity" />
+        <receiver android:name="com.example.android.mynews.Utils.AlarmReceiver" />
 
         <provider
             android:name="com.android.tools.ir.server.InstantRunContentProvider"

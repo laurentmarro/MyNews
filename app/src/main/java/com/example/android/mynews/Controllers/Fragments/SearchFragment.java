@@ -127,9 +127,6 @@ public class SearchFragment extends Fragment {
         // bring back URL
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         origin = preferences.getString("ORIGINE", getString(R.string.search));
-        Log.i("TAG", origin);
-        Log.i("TAG", ""+getString(R.string.notifications));
-        Log.i("TAG", ""+getString(R.string.search));
 
         if (origin.equals(getString(R.string.search))) {
             urlToShow = preferences.getString("URLTOSEARCH", "");
@@ -201,8 +198,6 @@ public class SearchFragment extends Fragment {
         AlertDialog alert = builder.create();
         alert.show();
         Button neutralButton = alert.getButton(DialogInterface.BUTTON_NEUTRAL);
-        //Set negative button text color
-        neutralButton.setTextColor(Color.MAGENTA);
         alert.getWindow();
 
         // Setting Dialog View

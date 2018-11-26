@@ -13,15 +13,15 @@ import java.lang.IllegalStateException;
 import java.lang.Override;
 
 public class SearchAndDisplayActivity_ViewBinding implements Unbinder {
-  private SearchAndDisplayActivity target;
+  private SearchAndDisplayA target;
 
   @UiThread
-  public SearchAndDisplayActivity_ViewBinding(SearchAndDisplayActivity target) {
+  public SearchAndDisplayActivity_ViewBinding(SearchAndDisplayA target) {
     this(target, target.getWindow().getDecorView());
   }
 
   @UiThread
-  public SearchAndDisplayActivity_ViewBinding(SearchAndDisplayActivity target, View source) {
+  public SearchAndDisplayActivity_ViewBinding(SearchAndDisplayA target, View source) {
     this.target = target;
 
     target.recyclerView = Utils.findRequiredViewAsType(source, R.id.search_and_display_recycler_view, "field 'recyclerView'", RecyclerView.class);
@@ -31,7 +31,7 @@ public class SearchAndDisplayActivity_ViewBinding implements Unbinder {
   @Override
   @CallSuper
   public void unbind() {
-    SearchAndDisplayActivity target = this.target;
+    SearchAndDisplayA target = this.target;
     if (target == null) throw new IllegalStateException("Bindings already cleared.");
     this.target = null;
 

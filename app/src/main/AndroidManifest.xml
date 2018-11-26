@@ -83,12 +83,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controllers.Activities.MainActivity" />
         </activity>
-        <activity android:name=".Controllers.Activities.DisplayNotificationsActivity" />
-        <activity android:name=".Controllers.Activities.ShowNotificationsActivity" />
 
-        <receiver android:name=".Controllers.Activities.DisplayNotificationsActivity$AlarmReceiver" />
+        <activity android:name=".Controllers.Helpers.ShowNotifications" />
+        <activity android:name=".Controllers.Helpers.SearchAndDisplay"></activity>
+        <activity android:name=".Controllers.Helpers.DisplayNotifications" />
 
-        <activity android:name=".Controllers.Activities.SearchAndDisplayActivity" />
+        <receiver android:name=".Utils.AlarmReceiver" />
+
     </application>
 
 </manifest>
