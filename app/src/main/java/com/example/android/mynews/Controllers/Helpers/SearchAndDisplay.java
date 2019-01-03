@@ -43,6 +43,8 @@ public class SearchAndDisplay extends AppCompatActivity {
         }
 
         this.configureUrl();
+        editor.putString("URLTOSEARCH", urlToShow);
+        editor.apply();
         this.configureAndShowSearchFragment();
     }
 
@@ -87,7 +89,8 @@ public class SearchAndDisplay extends AppCompatActivity {
     }
 
     private void configureAndShowSearchFragment(){
-        searchFragment = (SearchFragment) getSupportFragmentManager().findFragmentById(R.id.activity_search_and_display_frame_layout);
+        searchFragment = (SearchFragment) getSupportFragmentManager().
+                findFragmentById(R.id.activity_search_and_display_frame_layout);
 
         if (searchFragment == null) {
             searchFragment = new SearchFragment();
@@ -96,5 +99,4 @@ public class SearchAndDisplay extends AppCompatActivity {
                     .commit();
         }
     }
-
 }

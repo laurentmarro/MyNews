@@ -22,7 +22,8 @@
             android:buttonTint="@color/colorPrimary"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
-            android:text="@string/arts" />
+            android:text="@string/arts"
+            tools:targetApi="lollipop" />
 
         <CheckBox
             android:id="@+id/business_CheckBox"
@@ -31,7 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
-            android:text="@string/business" />
+            android:text="@string/business"
+            tools:targetApi="lollipop" />
 
         <CheckBox
             android:id="@+id/entrepreneurs_CheckBox"
@@ -40,7 +42,8 @@
             android:buttonTint="@color/colorPrimary"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
-            android:text="@string/entrepreneurs" />
+            android:text="@string/entrepreneurs"
+            tools:targetApi="lollipop" />
 
     </LinearLayout>
 
@@ -52,7 +55,8 @@
         android:layout_marginStart="20dp"
         android:orientation="vertical"
         app:layout_constraintStart_toEndOf="@+id/linearLayout1"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        tools:targetApi="lollipop">
 
         <CheckBox
             android:id="@+id/politics_CheckBox"

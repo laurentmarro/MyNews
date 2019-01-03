@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -36,7 +35,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
 public class SearchFragment extends Fragment {
-    SharedPreferences sharedPreferences;
 
     @NonNull
     public static SearchFragment newInstance() {
@@ -51,23 +49,26 @@ public class SearchFragment extends Fragment {
 
     //FOR DATA
     private Disposable disposable;
-    // Declare list and Adapter
+    private SharedPreferences preferences;
     private List<ArticleSearch> articles;
     private ArticleSearchAdapter adapter;
     private String origin;
-    String urlToShow;
+    private String urlToShow;
 
     public SearchFragment() { }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
-        ButterKnife.bind(this, view);
-        this.configureRecyclerView(); // Call during UI creation
-        this.configureSwipeRefreshLayout(); // Configure the SwipeRefreshLayout
-        this.configureOnClickRecyclerView(); // Calling the method that configuring click on RecyclerView
-        this.executeHttpRequestWithRetrofit(); // Execute stream after UI creation
-        return view;
+        preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        origin = preferences.getString("ORIGINE", getString(R.string.search));
+        {   View view = inflater.inflate(R.layout.fragment_search, container, false);
+            ButterKnife.bind(this, view);
+            this.configureRecyclerView(); // Call during UI creation
+            this.configureSwipeRefreshLayout(); // Configure the SwipeRefreshLayout
+            this.configureOnClickRecyclerView(); // Calling the method that configuring click on RecyclerView
+            this.executeHttpRequestWithRetrofit(); // Execute stream after UI creation
+            return view;
+        }
     }
 
     @Override
@@ -125,8 +126,6 @@ public class SearchFragment extends Fragment {
 
     private void executeHttpRequestWithRetrofit() {
         // bring back URL
-        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        origin = preferences.getString("ORIGINE", getString(R.string.search));
 
         if (origin.equals(getString(R.string.search))) {
             urlToShow = preferences.getString("URLTOSEARCH", "");
@@ -151,11 +150,7 @@ public class SearchFragment extends Fragment {
 
                     @Override
                     public void onComplete() {
-                        if (articles.size() == 0 && (origin.equals(getString(R.string.notifications)))) {
-                            sharedPreferences.edit().putInt("NewArticle",articles.size()).apply();
-                        }
-
-                        else if (articles.size() == 0 && (origin.equals(getString(R.string.search)))) {
+                        if (articles.size() == 0 && (origin.equals(getString(R.string.search)))) {
                             popUp();
                         }
                     }

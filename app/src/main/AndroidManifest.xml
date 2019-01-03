@@ -4,6 +4,7 @@
     package="com.example.android.mynews">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SET_ALARM"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -84,11 +85,13 @@
                 android:value=".Controllers.Activities.MainActivity" />
         </activity>
 
-        <activity android:name=".Controllers.Helpers.ShowNotifications" />
-        <activity android:name=".Controllers.Helpers.SearchAndDisplay"></activity>
+        <activity android:name=".Controllers.Activities.ShowNotifications" />
+        <activity android:name=".Controllers.Helpers.SearchAndDisplay"/>
         <activity android:name=".Controllers.Helpers.DisplayNotifications" />
+        <activity android:name=".Controllers.Helpers.SendNotifications" />
+        <activity android:name=".Controllers.Helpers.NotificationResearch" />
 
-        <receiver android:name=".Utils.AlarmReceiver" />
+        <receiver android:name=".Utils.AlarmReceiver"/>
 
     </application>
 

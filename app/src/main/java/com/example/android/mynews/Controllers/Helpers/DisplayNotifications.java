@@ -15,6 +15,7 @@ import android.view.Window;
 import com.example.android.mynews.Controllers.Activities.MainActivity;
 import com.example.android.mynews.Controllers.Activities.NotificationsActivity;
 import com.example.android.mynews.R;
+import com.example.android.mynews.Utils.AlarmReceiver;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -80,7 +81,8 @@ public class DisplayNotifications extends AppCompatActivity {
         // filterQuery
         for (int j = 0; j < 6 ; j++) {
             if (preferences.getBoolean(categoriesList.get(j),false)) {
-                filterQuery.append(filterQuery).append("\"").append(categoriesList.get(j).substring(9).toLowerCase()).append("\" ");
+                filterQuery.append(filterQuery).append("\"").append(categoriesList.get(j)
+                        .substring(9).toLowerCase()).append("\" ");
             }
         }
 
@@ -90,22 +92,21 @@ public class DisplayNotifications extends AppCompatActivity {
         editor.apply();
     }
 
+    // Configuring the AlarmManager
     private void configureAlarmManager(){
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, NotificationsActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent,0);
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
-        // Set the alarm to start at 12:00 a.m.
+        // Set the alarm to start at 1:00 p.m. (7 a.m in NY)
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 12); // 6:00 a.m in NY
-        calendar.set(Calendar.MINUTE, 0);
-        calendar.set(Calendar.SECOND,0);
-
+        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.MINUTE, 54);
+        calendar.set(Calendar.SECOND, 0);
         // Set interval
-        assert alarmManager != null;
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager
-                .INTERVAL_DAY,pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
     private void showAlertDialogAndReturn(){

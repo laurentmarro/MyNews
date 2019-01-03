@@ -198,15 +198,20 @@ public class NotificationsActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 conditionsForNotifications();
                 if( preferences.getBoolean("READYTONOTIFY",false)) {
+                    Toast.makeText(getApplicationContext(), R.string.notificationareok,
+                            Toast.LENGTH_LONG).show();
                     Intent displayIntent = new Intent(NotificationsActivity.this,
                             DisplayNotifications.class);
                     startActivity(displayIntent);
                     dialog.dismiss();
                 } else {
                     editor.putBoolean("SWITCH", false);
-                    Toast.makeText(getApplicationContext(), R.string.notifications_off,
-                            Toast.LENGTH_LONG).show();
                     editor.apply();
+                    Toast.makeText(getApplicationContext(), R.string.nonotification,
+                            Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(NotificationsActivity.this,
+                            NotificationsActivity.class);
+                    startActivity(intent);
                     updateWidgetDisplay();
                     dialog.dismiss();
                 }

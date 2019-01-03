@@ -29,7 +29,7 @@
             android:inputType="text"
             android:textColor="@android:color/black"
             android:textSize="18sp"
-            tools:targetApi="lollipop" />
+            tools:ignore="Autofill,UnusedAttribute" />
 
     </LinearLayout>
 

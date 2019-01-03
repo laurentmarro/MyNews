@@ -22,10 +22,10 @@
     <string name="help_text">This application have been done and tested for API 19 and more. However, if something wrong happens you can mail the author to : laurent.marro@outlook.fr</string>
     <string name="begin_date">Begin Date</string>
     <string name="end_date">End Date</string>
-    <string name="date">01/11/2018</string>
+    <string name="date">01/01/2019</string>
     <string name="articles_image">articles\'image</string>
     <string name="arts">Arts</string>
-    <string name="notification_title">"new article(s) is (are) on line"</string>
+    <string name="notification_text">"new article(s) is (are) on line"</string>
     <string name="information_no_notification">You need to ask something, to click at least a box and to switch on the notification button</string>
     <string name="query_need_something">You have to ask something for your query</string>
     <string name="sectionandsubsection">sectionandsubsection</string>
@@ -36,7 +36,7 @@
     <string name="no">NO</string>
     <string name="new_articles">New Article(s)</string>
     <string name="atleast_two_characters">At least two characters !</string>
-    <string name="begindate">20180801</string>
+    <string name="begindate">20190101</string>
     <string name="doyouwanttobenotified">Do you want to be notified of new article(s) using this search ?</string>
     <string name="notificationsupdated">Notifications_updated</string>
     <string name="endatemustbeafterorsame">End Date must be after or the same than Begin Date</string>
@@ -45,5 +45,7 @@
     <string name="sorry_search">Sorry, we don\'t have any article for your search</string>
     <string name="ok">OK</string>
     <string name="errornotification">There is an error in the notifications screen. Click OK to go back</string>
+    <string name="nonotification">Notifications are not functional</string>
+    <string name="notificationareok">Notifications are functional</string>
     <string name="searchresult_s">SearchResult(s)</string>
 </resources>
