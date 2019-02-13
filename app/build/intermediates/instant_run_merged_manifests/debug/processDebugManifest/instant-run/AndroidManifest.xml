@@ -28,10 +28,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Child1 of the main activity -->
-
+        </activity> <!-- Child1 of the main activity -->
         <activity
             android:name="com.example.android.mynews.Controllers.Activities.NotificationsActivity"
             android:label="@string/notifications"
@@ -41,10 +38,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controllers.Activities.MainActivity" />
-        </activity>
-
-        <!-- Child2 of the main activity -->
-
+        </activity> <!-- Child2 of the main activity -->
         <activity
             android:name="com.example.android.mynews.Controllers.Activities.SearchActivity"
             android:label="@string/search"
@@ -54,10 +48,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controllers.Activities.MainActivity" />
-        </activity>
-
-        <!-- Child3 of the main activity -->
-
+        </activity> <!-- Child3 of the main activity -->
         <activity
             android:name="com.example.android.mynews.Controllers.Activities.HelpActivity"
             android:label="@string/help"
@@ -67,10 +58,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controllers.Activities.MainActivity" />
-        </activity>
-
-        <!-- Child4 of the main activity -->
-
+        </activity> <!-- Child4 of the main activity -->
         <activity
             android:name="com.example.android.mynews.Controllers.Activities.AboutActivity"
             android:label="@string/about"
@@ -91,13 +79,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controllers.Activities.MainActivity" />
         </activity>
-        <activity android:name="com.example.android.mynews.Controllers.Activities.ShowNotifications" />
         <activity android:name="com.example.android.mynews.Controllers.Helpers.SearchAndDisplay" />
-        <activity android:name="com.example.android.mynews.Controllers.Helpers.DisplayNotifications" />
-        <activity android:name="com.example.android.mynews.Controllers.Helpers.SendNotifications" />
-        <activity android:name="com.example.android.mynews.Controllers.Helpers.NotificationResearch" />
+        <activity android:name="com.example.android.mynews.Controllers.Helpers.NotificationsArticles" />
 
         <receiver android:name="com.example.android.mynews.Utils.AlarmReceiver" />
+
+        <service android:name="com.example.android.mynews.Controllers.Helpers.NotificationResearch" />
+        <service android:name="com.example.android.mynews.Controllers.Helpers.SendNotifications" />
 
         <provider
             android:name="com.android.tools.ir.server.InstantRunContentProvider"

@@ -4,7 +4,7 @@
     package="com.example.android.mynews">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SET_ALARM"/>
+    <uses-permission android:name="android.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -21,10 +21,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Child1 of the main activity -->
-
+        </activity> <!-- Child1 of the main activity -->
         <activity
             android:name=".Controllers.Activities.NotificationsActivity"
             android:label="@string/notifications"
@@ -34,10 +31,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controllers.Activities.MainActivity" />
-        </activity>
-
-        <!-- Child2 of the main activity -->
-
+        </activity> <!-- Child2 of the main activity -->
         <activity
             android:name=".Controllers.Activities.SearchActivity"
             android:label="@string/search"
@@ -47,10 +41,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controllers.Activities.MainActivity" />
-        </activity>
-
-        <!-- Child3 of the main activity -->
-
+        </activity> <!-- Child3 of the main activity -->
         <activity
             android:name=".Controllers.Activities.HelpActivity"
             android:label="@string/help"
@@ -60,10 +51,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controllers.Activities.MainActivity" />
-        </activity>
-
-        <!-- Child4 of the main activity -->
-
+        </activity> <!-- Child4 of the main activity -->
         <activity
             android:name=".Controllers.Activities.AboutActivity"
             android:label="@string/about"
@@ -84,14 +72,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controllers.Activities.MainActivity" />
         </activity>
+        <activity android:name=".Controllers.Helpers.SearchAndDisplay" />
+        <activity android:name=".Controllers.Helpers.NotificationsArticles" />
 
-        <activity android:name=".Controllers.Activities.ShowNotifications" />
-        <activity android:name=".Controllers.Helpers.SearchAndDisplay"/>
-        <activity android:name=".Controllers.Helpers.DisplayNotifications" />
-        <activity android:name=".Controllers.Helpers.SendNotifications" />
-        <activity android:name=".Controllers.Helpers.NotificationResearch" />
+        <receiver android:name=".Utils.AlarmReceiver"></receiver>
 
-        <receiver android:name=".Utils.AlarmReceiver"/>
+        <service android:name=".Controllers.Helpers.NotificationResearch" />
+        <service android:name=".Controllers.Helpers.SendNotifications" />
 
     </application>
 

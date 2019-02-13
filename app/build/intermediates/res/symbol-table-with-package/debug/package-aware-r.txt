@@ -826,6 +826,7 @@ dimen design_tab_text_size_2line
 dimen design_textinput_caption_translate_y
 dimen disabled_alpha_material_dark
 dimen disabled_alpha_material_light
+dimen fab_margin
 dimen fastscroll_default_thickness
 dimen fastscroll_margin
 dimen fastscroll_minimum_range
@@ -1003,7 +1004,6 @@ drawable avd_hide_password
 drawable avd_show_password
 drawable baseline_list_alt_white_18dp
 drawable baseline_live_help_white_18dp
-drawable baseline_notification_important_white_18dp
 drawable color_cursor
 drawable design_bottom_navigation_item_background
 drawable design_fab_background
@@ -1036,6 +1036,7 @@ drawable notification_icon_background
 drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
+drawable notificationsbell
 drawable notify_panel_notification_icon_bg
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -1068,13 +1069,13 @@ id action_mode_close_button
 id action_text
 id actions
 id activity_chooser_view_content
-id activity_display_notifications_frame_layout
 id activity_main
 id activity_main_layout
 id activity_main_params
 id activity_main_search
 id activity_main_tabs
 id activity_main_viewpager
+id activity_notifications_frame_layout
 id activity_query_input
 id activity_search_and_display_frame_layout
 id add
@@ -1337,10 +1338,10 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_about
 layout activity_article_webview
-layout activity_display_notifications
 layout activity_help
 layout activity_main
 layout activity_notifications
+layout activity_notifications_articles
 layout activity_search
 layout activity_search_and_display
 layout design_bottom_navigation_item
@@ -1390,6 +1391,7 @@ layout toolbar
 menu menu_activity_main
 mipmap ic_launcher
 mipmap ic_launcher_round
+string NotificationsArticles
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -1461,14 +1463,12 @@ string information_no_notification
 string informationnosearch
 string most_popular
 string mtrl_chip_close_icon_content_description
-string new_articles
 string no
 string nonotification
-string notification_text
 string notificationareok
 string notifications
-string notifications_off
 string notificationsupdated
+string notificationtext
 string ok
 string parameters
 string password_toggle_content_description
@@ -1500,6 +1500,9 @@ style Animation_AppCompat_DropDownUp
 style Animation_AppCompat_Tooltip
 style Animation_Design_BottomSheetDialog
 style AppTheme
+style AppTheme_AppBarOverlay
+style AppTheme_NoActionBar
+style AppTheme_PopupOverlay
 style Base_AlertDialog_AppCompat
 style Base_AlertDialog_AppCompat_Light
 style Base_Animation_AppCompat_Dialog

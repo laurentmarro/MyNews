@@ -53,14 +53,14 @@ public class SearchFragment extends Fragment {
     private List<ArticleSearch> articles;
     private ArticleSearchAdapter adapter;
     private String origin;
-    private String urlToShow;
+    String urlToShow;
 
     public SearchFragment() { }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        origin = preferences.getString("ORIGINE", getString(R.string.search));
+        origin = preferences.getString("ORIGIN", getString(R.string.search));
         {   View view = inflater.inflate(R.layout.fragment_search, container, false);
             ButterKnife.bind(this, view);
             this.configureRecyclerView(); // Call during UI creation
@@ -125,7 +125,7 @@ public class SearchFragment extends Fragment {
     // -------------------
 
     private void executeHttpRequestWithRetrofit() {
-        // bring back URL
+        // bring back URL and Origin
 
         if (origin.equals(getString(R.string.search))) {
             urlToShow = preferences.getString("URLTOSEARCH", "");

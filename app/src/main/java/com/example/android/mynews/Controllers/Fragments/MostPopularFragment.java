@@ -113,7 +113,7 @@ public class MostPopularFragment extends Fragment {
     private void executeHttpRequestWithRetrofit(){
         // Execute the stream subscribing to Observable defined inside NewsStreams
         this.disposable = NewsStreams
-                .streamFetchArticleMostPopular("mostpopular/v2/mostemailed/all-sections/1.json?api-key=ff58457c72574ee094c10a7b22f5ebc7")
+                .streamFetchArticleMostPopular("mostpopular/v2/mostemailed/all-sections/1.json?api-key=HNly5h3iNYcprPPIOGMINGxwHTJQUutA")
                 .subscribeWith(new DisposableObserver<ArticleCompositionMostPopular>()
                 {
                     @Override

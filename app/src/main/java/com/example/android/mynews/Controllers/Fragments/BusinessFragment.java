@@ -113,7 +113,7 @@ public class BusinessFragment extends Fragment {
     private void executeHttpRequestWithRetrofit(){
         // Execute the stream subscribing to Observable defined inside NewsStreams
         this.disposable = NewsStreams
-                .streamFetchArticleBusiness("topstories/v2/business.json?api-key=ff58457c72574ee094c10a7b22f5ebc7")
+                .streamFetchArticleBusiness("topstories/v2/business.json?api-key=HNly5h3iNYcprPPIOGMINGxwHTJQUutA")
                 .subscribeWith(new DisposableObserver<ArticleCompositionBusiness>()
                 {
                     @Override

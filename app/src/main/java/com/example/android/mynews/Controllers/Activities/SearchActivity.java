@@ -42,7 +42,7 @@ public class SearchActivity extends AppCompatActivity {
     private List<CheckBox> checkBoxList = new ArrayList<>();
     private List<String> searchCategoriesList = new ArrayList<>(),categoriesList = new ArrayList<>();
     private DatePickerDialog.OnDateSetListener beginDateSetListener, endDateSetListener;
-    private String query="", day2, month1, day1, beginDate="01/11/2018", endDate = "01/11/2018", today;
+    private String query="", day2, month1, day1, beginDate="01/01/2019", endDate = "01/01/2019", today;
     private int year, month, day, numberOfTrue=0;
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
@@ -288,9 +288,6 @@ public class SearchActivity extends AppCompatActivity {
     private void executeSearch() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = preferences.edit();
-
-        // define origin
-        preferences.edit().putString("ORIGINE", getString(R.string.search)).apply();
 
         // Launch new activity to search and display results
         editor.putString("SENTENCE", query);

@@ -12,7 +12,8 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
 
         <!-- Toolbar -->
         <include
@@ -42,7 +43,8 @@
             android:layout_marginStart="20dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/begin_date"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/textView_end"
@@ -51,7 +53,8 @@
             android:layout_marginEnd="84dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/end_date"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/datepickerbegin"

@@ -4,7 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+
 import com.example.android.mynews.Controllers.Fragments.SearchFragment;
 import com.example.android.mynews.R;
 import java.text.ParseException;
@@ -21,8 +24,8 @@ public class SearchAndDisplay extends AppCompatActivity {
         CHECKBOX_POLITICS, CHECKBOX_SPORTS, CHECKBOX_TRAVEL
     }
 
-    String urlToShow, beginDate,endDate, query, filter,
-            forAll = "search/v2/articlesearch.json?api-key=ff58457c72574ee094c10a7b22f5ebc7&q=";
+    String urlToShow, beginDate,endDate, query, filter, origin = "Search",
+            forAll = "search/v2/articlesearch.json?api-key=HNly5h3iNYcprPPIOGMINGxwHTJQUutA&q=";
     private final List<String> searchCategoriesList = new ArrayList<>();
     Date newDate, newDate2 = null;
     private StringBuilder filterQuery = new StringBuilder();
@@ -44,6 +47,7 @@ public class SearchAndDisplay extends AppCompatActivity {
 
         this.configureUrl();
         editor.putString("URLTOSEARCH", urlToShow);
+        editor.putString("ORIGIN", origin);
         editor.apply();
         this.configureAndShowSearchFragment();
     }
@@ -87,6 +91,8 @@ public class SearchAndDisplay extends AppCompatActivity {
         editor.putString("URLTOSEARCH", urlToShow);
         editor.apply();
     }
+
+    // CONFIGURATION
 
     private void configureAndShowSearchFragment(){
         searchFragment = (SearchFragment) getSupportFragmentManager().
