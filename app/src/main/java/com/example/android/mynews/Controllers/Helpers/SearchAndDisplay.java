@@ -4,10 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
 import com.example.android.mynews.Controllers.Fragments.SearchFragment;
 import com.example.android.mynews.R;
 import java.text.ParseException;

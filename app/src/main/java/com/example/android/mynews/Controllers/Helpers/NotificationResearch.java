@@ -51,7 +51,7 @@ public class NotificationResearch extends Service {
         urlToShow = preferences.getString("URLTOSHOW", "");
         filter = preferences.getString("FILTER", "");
 
-        // Updating URL
+        // Updating URL with dates
         Date date = new Date();
         today = new SimpleDateFormat("yyyyMMdd").format(date);
         day = today.substring(6);
@@ -63,7 +63,8 @@ public class NotificationResearch extends Service {
         }
         today = today.substring(0,6) + day;
         urlToShow = urlToShow+filter+")&begin_date="+today+"&end_date="+today;
-        Log.i("TAG", ""+urlToShow);
+        editor.putString("URLTOSHOW", urlToShow);
+        editor.apply();
     }
 
     // -------------------
@@ -84,6 +85,7 @@ public class NotificationResearch extends Service {
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.i("TAG", "onError: ");
                     }
 
                     @Override
